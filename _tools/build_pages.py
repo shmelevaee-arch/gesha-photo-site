@@ -5,7 +5,7 @@ import io, os
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
-V = "21"  # версия ассетов, чтобы браузер не держал старый CSS
+V = "22"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
 

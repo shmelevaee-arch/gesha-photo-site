@@ -39,7 +39,12 @@
     }
 
     items.forEach(function (item, i) {
+      // кадры идут по кругу — так ритм из манифеста (тон, крупность плана, форма)
+      // читается по горизонтали; в короткую колонку уходим, только если она заметно отстала
+      var target = i % cols;
       var shortest = heights.indexOf(Math.min.apply(null, heights));
+      if (heights[target] - heights[shortest] > 0.9) target = shortest;
+
       var a = document.createElement('a');
       a.className = 'gallery__item';
       a.href = 'images/' + category + '/' + item.id + '-full.webp';
@@ -54,8 +59,8 @@
       img.height = item.h;
 
       a.appendChild(img);
-      nodes[shortest].appendChild(a);
-      heights[shortest] += item.h / item.w;
+      nodes[target].appendChild(a);
+      heights[target] += item.h / item.w;
     });
 
     renderedCols = cols;
