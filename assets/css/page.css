@@ -351,8 +351,8 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 
 @media (max-width: 900px) {
   .split { grid-template-columns: 1fr; }
-  /* на узком экране фото не липнет — иначе занимает весь экран при скролле */
-  .split__media { position: static; }
+  /* на телефоне фото прячем — цены должны быть сразу, без экрана прокрутки */
+  .split__media { display: none; }
 }
 
 @media (max-width: 700px) {
