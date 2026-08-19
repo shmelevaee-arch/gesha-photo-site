@@ -16,9 +16,30 @@
     })
     .catch(function (e) { console.error('Не удалось загрузить manifest.json', e); });
 
+  function columnCount() {
+    if (window.innerWidth <= 560) return 1;
+    if (window.innerWidth <= 900) return 2;
+    return 3;
+  }
+
+  // Раскладываем кадры по колонкам: каждый следующий уходит в самую короткую колонку,
+  // чтобы низ галереи получался ровным независимо от пропорций фото.
   function render() {
-    var frag = document.createDocumentFragment();
+    var cols = columnCount();
+    grid.innerHTML = '';
+    var heights = [];
+    var nodes = [];
+
+    for (var c = 0; c < cols; c++) {
+      var col = document.createElement('div');
+      col.className = 'gallery__col';
+      grid.appendChild(col);
+      nodes.push(col);
+      heights.push(0);
+    }
+
     items.forEach(function (item, i) {
+      var shortest = heights.indexOf(Math.min.apply(null, heights));
       var a = document.createElement('a');
       a.className = 'gallery__item';
       a.href = 'images/' + category + '/' + item.id + '-full.webp';
@@ -26,18 +47,28 @@
 
       var img = document.createElement('img');
       img.src = 'images/' + category + '/' + item.id + '-grid.webp';
-      img.alt = root.dataset.alt ? root.dataset.alt + ' — кадр ' + (i + 1) : 'Фото ' + (i + 1);
-      img.loading = i < 4 ? 'eager' : 'lazy';
+      img.alt = (root.dataset.alt || 'Фото') + ' — кадр ' + (i + 1);
+      img.loading = i < cols * 2 ? 'eager' : 'lazy';
       img.decoding = 'async';
       img.width = item.w;
       img.height = item.h;
-      img.style.aspectRatio = item.w + ' / ' + item.h;
 
       a.appendChild(img);
-      frag.appendChild(a);
+      nodes[shortest].appendChild(a);
+      heights[shortest] += item.h / item.w;
     });
-    grid.appendChild(frag);
+
+    renderedCols = cols;
   }
+
+  var renderedCols = 0;
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (items.length && columnCount() !== renderedCols) render();
+    }, 150);
+  });
 
   // ---------- лайтбокс ----------
   var box = document.getElementById('lightbox');
