@@ -5,7 +5,7 @@ import io, os
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
-V = "12"  # версия ассетов, чтобы браузер не держал старый CSS
+V = "13"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
 
@@ -97,10 +97,10 @@ PRICES = '''<main class="page">
     <div>
       <div class="page__head"><h2 class="page__title">Цены</h2></div>
 
-      <section class="block">
-        <h3 class="block__title">Индивидуальная портретная съёмка</h3>
-        <div class="row"><span class="row__name">Стоимость</span><span class="row__value">10 000 ₽</span></div>
-        <p class="block__sub">Что входит:</p>
+      <section class="price">
+        <h3 class="price__name">Индивидуальная портретная съёмка</h3>
+        <p class="price__value">10 000 ₽</p>
+        <p class="price__label">Что входит</p>
         <ul class="plain">
           <li>консультация перед съёмкой</li>
           <li>помощь с подбором образа</li>
@@ -110,14 +110,16 @@ PRICES = '''<main class="page">
           <li>10 фотографий в детальной ретуши</li>
           <li>готовность материала до 14 дней</li>
         </ul>
-        <p class="block__sub">Локация:</p>
-        <p class="plain-text">студия, улица, кафе или другое место по договорённости.</p>
+        <div class="price__loc">
+          <p class="price__label">Локация</p>
+          <p class="plain-text">Студия, улица, кафе или другое место по договорённости.</p>
+        </div>
       </section>
 
-      <section class="block">
-        <h3 class="block__title">Парная или семейная съёмка</h3>
-        <div class="row"><span class="row__name">Стоимость</span><span class="row__value">12 000 ₽</span></div>
-        <p class="block__sub">Что входит:</p>
+      <section class="price">
+        <h3 class="price__name">Парная или семейная съёмка</h3>
+        <p class="price__value">12 000 ₽</p>
+        <p class="price__label">Что входит</p>
         <ul class="plain">
           <li>консультация перед съёмкой</li>
           <li>помощь с подбором образов</li>
@@ -127,19 +129,23 @@ PRICES = '''<main class="page">
           <li>10 фото в детальной ретуши</li>
           <li>готовность до 14 дней</li>
         </ul>
-        <p class="plain-text">Локация по договорённости.</p>
+        <div class="price__loc">
+          <p class="price__label">Локация</p>
+          <p class="plain-text">По договорённости.</p>
+        </div>
       </section>
 
-      <section class="block">
-        <h3 class="block__title">При необходимости, дополнительно оплачивается</h3>
+      <section class="price">
+        <h3 class="price__name">Дополнительно</h3>
+        <p class="price__label">При необходимости оплачивается отдельно</p>
         <ul class="plain">
           <li>аренда студии</li>
           <li>услуги визажиста</li>
-          <li>дополнительный час съёмки: 5 000 ₽</li>
+          <li>дополнительный час съёмки — 5 000 ₽</li>
         </ul>
       </section>
 
-      <section class="block">
+      <section class="price">
         <p class="plain-text">Для записи напишите в директ желаемую дату и задачу съёмки.</p>
         <a class="cta" href="{insta}" target="_blank" rel="noopener">Написать в директ</a>
       </section>
