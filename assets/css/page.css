@@ -178,7 +178,8 @@
   display: grid;
   /* фото тянется, текстовая колонка ограничена — иначе на широком мониторе
      цена уезжает от названия на пол-экрана */
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 720px);
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 640px);
+  max-width: 1680px;
   gap: var(--s6);
   align-items: start;
 }
@@ -246,10 +247,23 @@
 .plain { list-style: none; margin: 0; padding: 0; }
 
 .plain li {
-  padding: 6px 0;
+  position: relative;
+  padding: 7px 0 7px 22px;
   font-size: 17px;
   line-height: 1.6;
   color: #1c1c1e;
+}
+
+/* маркер-точка: список читается перечислением, а не сплошным текстом */
+.plain li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 18px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #1c1c1e;
 }
 
 .plain-text {
@@ -284,7 +298,11 @@
   padding: var(--s5) var(--pad) var(--s4);
 }
 
-@media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; }
+  /* на узком экране фото не липнет — иначе занимает весь экран при скролле */
+  .split__media { position: static; }
+}
 
 @media (max-width: 700px) {
   .topbar { height: 64px; }
