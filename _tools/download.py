@@ -16,6 +16,28 @@ def api(path):
         return json.load(r)
 
 
+def fetch(href, dest, expected, attempts=5):
+    """Качает файл чанками. Яндекс.Диск иногда рвёт соединение (IncompleteRead) —
+    поэтому несколько попыток и проверка итогового размера."""
+    last = None
+    for attempt in range(1, attempts + 1):
+        try:
+            with urllib.request.urlopen(href, timeout=120) as r, open(dest, "wb") as f:
+                while True:
+                    chunk = r.read(1 << 20)
+                    if not chunk:
+                        break
+                    f.write(chunk)
+            size = os.path.getsize(dest)
+            if expected is None or size == expected:
+                return size
+            last = f"размер {size} вместо {expected}"
+        except Exception as e:
+            last = repr(e)
+        print(f"    попытка {attempt} не удалась: {last}", flush=True)
+    raise RuntimeError(f"не смог скачать {dest}: {last}")
+
+
 def main():
     total_bytes = 0
     for remote, local in FOLDERS.items():
@@ -29,10 +51,7 @@ def main():
             if os.path.exists(dest) and os.path.getsize(dest) == item.get("size", -1):
                 print(f"  [{n}] {item['name']} — уже скачан", flush=True)
                 continue
-            href = item["file"]
-            with urllib.request.urlopen(href, timeout=300) as r, open(dest, "wb") as f:
-                f.write(r.read())
-            size = os.path.getsize(dest)
+            size = fetch(item["file"], dest, item.get("size"))
             total_bytes += size
             print(f"  [{n}] {item['name']} — {size/1024/1024:.1f} МБ", flush=True)
     print(f"Готово. Скачано {total_bytes/1024/1024:.1f} МБ", flush=True)

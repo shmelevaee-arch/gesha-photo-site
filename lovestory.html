@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Лавстори — Евгения Досаева, фотограф</title>
+<meta name="description" content="Съёмки для пар: лавстори в студии, на улице и в городе. Фотограф Евгения Досаева, Санкт-Петербург.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/page.css">
+</head>
+<body>
+<header class="topbar">
+  <a href="index.html"><h2 class="topbar__name">Евгения Досаева</h2></a>
+  <nav class="topbar__nav meta" aria-label="Основная навигация">
+    <a href="prices.html">Цены</a>
+    <a href="contacts.html">Контакты</a>
+    <a href="index.html">Все разделы</a>
+  </nav>
+</header>
+
+<main class="page" data-category="lovestory" data-alt="Лавстори">
+  <div class="page__head">
+    <h1 class="page__title">Лавстори</h1>
+    <span class="page__num">01</span>
+  </div>
+  <div class="gallery"></div>
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
+  <button class="lightbox__close" type="button" aria-label="Закрыть">✕</button>
+  <button class="lightbox__btn lightbox__prev" type="button" aria-label="Предыдущее фото">←</button>
+  <img src="" alt="">
+  <button class="lightbox__btn lightbox__next" type="button" aria-label="Следующее фото">→</button>
+  <span class="lightbox__counter meta"></span>
+</div>
+
+<footer class="foot">
+  <p class="meta">Съёмки в Санкт-Петербурге и с выездом</p>
+  <p class="meta"><a href="https://www.instagram.com/gesha__ph/" target="_blank" rel="noopener">Instagram — @gesha__ph</a></p>
+</footer>
+
+<script src="assets/js/gallery.js"></script>
+</body>
+</html>
