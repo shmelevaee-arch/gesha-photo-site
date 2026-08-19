@@ -1,17 +1,18 @@
-/* ---------- главная: меню-табличка ---------- */
+/* ---------- главная: имя слева, нумерованный список по центру ---------- */
 .home {
   position: relative;
   min-height: 100svh;
   padding: var(--pad);
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  background: var(--bg);
 }
 
-/* слой фоновых фото — по одному на пункт меню, проявляются при наведении */
-.home__bg { position: absolute; inset: 0; z-index: 0; background: var(--bg); }
+/* фоновое фото раздела — проявляется при наведении на пункт */
+.home__bg { position: absolute; inset: 0; z-index: 0; }
 
-.home__bg picture,
 .home__bg img {
   position: absolute;
   inset: 0;
@@ -19,99 +20,79 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transform: scale(1.06);
-  transition: opacity 0.7s ease, transform 1.4s ease;
+  transform: scale(1.05);
+  transition: opacity 0.6s ease, transform 1.4s ease;
 }
 
-.home__bg img.is-active { opacity: 0.42; transform: scale(1); }
+.home__bg img.is-active { opacity: 0.18; transform: scale(1); }
 
-/* затемнение поверх фото, чтобы текст читался всегда */
-.home__bg::after {
-  content: "";
+.menu { position: relative; z-index: 2; }
+
+/* имя — у левого края, по вертикали на уровне списка */
+.home__name {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(11,11,11,0.72), rgba(11,11,11,0.55) 45%, rgba(11,11,11,0.85));
+  z-index: 2;
+  left: var(--pad);
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  font-family: "Barlow Condensed", "Inter", Helvetica, Arial, sans-serif;
+  font-size: clamp(20px, 2vw, 30px);
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
-.home > *:not(.home__bg) { position: relative; z-index: 1; }
-
-.home__brand {
+.home__top,
+.home__foot {
+  position: absolute;
+  z-index: 2;
+  left: var(--pad);
+  right: var(--pad);
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  gap: 24px;
+  gap: 16px;
 }
 
-.home__name {
-  font-size: 12px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--fg);
-}
+.home__top { top: var(--pad); }
+.home__foot { bottom: var(--pad); }
 
-/* ---------- сама табличка ---------- */
-.menu {
-  align-self: center;
-  width: 100%;
-  max-width: 760px;
-  margin: clamp(24px, 5vh, 72px) 0;
-}
+/* ---------- список разделов ---------- */
+.menu { display: flex; flex-direction: column; }
 
 .menu__row {
   display: grid;
-  grid-template-columns: 64px 1fr auto;
-  align-items: center;
-  gap: 12px;
-  padding: clamp(14px, 2.2vh, 22px) 0;
-  border-top: 1px solid var(--line);
-  transition: color var(--tr), padding-left var(--tr);
+  grid-template-columns: 34px auto;
+  column-gap: clamp(40px, 7vw, 110px);
+  align-items: baseline;
+  padding: clamp(3px, 0.6vh, 8px) 0;
 }
 
-.menu__row:last-child { border-bottom: 1px solid var(--line); }
-
 .menu__num {
-  font-size: 12px;
-  letter-spacing: 0.14em;
+  font-size: clamp(12px, 1vw, 15px);
   color: var(--muted);
+  text-align: center;
   transition: color var(--tr);
 }
 
 .menu__label {
-  font-size: clamp(22px, 3.4vw, 38px);
-  line-height: 1.05;
-  letter-spacing: 0.02em;
+  font-family: "Barlow Condensed", "Inter", Helvetica, Arial, sans-serif;
+  font-size: clamp(22px, 2.6vw, 34px);
+  font-weight: 500;
+  line-height: 1.25;
   text-transform: uppercase;
-}
-
-.menu__note {
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-  opacity: 0;
-  transform: translateX(-8px);
   transition: opacity var(--tr), transform var(--tr);
 }
 
-.menu__row:hover { padding-left: 14px; }
 .menu__row:hover .menu__num { color: var(--fg); }
-.menu__row:hover .menu__note { opacity: 1; transform: translateX(0); }
+.menu__row:hover .menu__label { transform: translateX(6px); }
+.menu:hover .menu__row:not(:hover) .menu__label { opacity: 0.35; }
 
-/* когда наводим на один пункт — остальные приглушаются */
-.menu:hover .menu__row:not(:hover) .menu__label { color: var(--muted); }
-
-.home__foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 640px) {
-  .menu__row { grid-template-columns: 44px 1fr; }
-  .menu__note { display: none; }
-  .home__foot { flex-direction: column; gap: 6px; }
+@media (max-width: 700px) {
+  .home { align-items: flex-end; padding-bottom: calc(var(--pad) * 3); }
+  .home__name { position: static; transform: none; margin-bottom: 18px; }
+  .home { flex-direction: column; align-items: flex-start; justify-content: center; }
+  .menu { column-gap: 28px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

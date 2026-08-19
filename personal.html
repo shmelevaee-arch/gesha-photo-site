@@ -4,28 +4,34 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Персональные — Евгения Досаева, фотограф</title>
-<meta name="description" content="Индивидуальные портретные съёмки в студии и на улице. Фотограф Евгения Досаева, Санкт-Петербург.">
+<meta name="description" content="Индивидуальные портретные съёмки в студии и на улице. Фотограф Евгения Досаева, Москва.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/page.css">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css?v=5">
+<link rel="stylesheet" href="assets/css/page.css?v=5">
 </head>
 <body>
 <header class="topbar">
-  <a href="index.html"><h2 class="topbar__name">Евгения Досаева</h2></a>
-  <nav class="topbar__nav meta" aria-label="Основная навигация">
-    <a href="prices.html">Цены</a>
-    <a href="contacts.html">Контакты</a>
-    <a href="index.html">Все разделы</a>
-  </nav>
+  <h1 class="topbar__title"><a href="index.html">Евгения Досаева</a> <span>· Персональные</span></h1>
+  <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="navmenu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
-<main class="page" data-category="personal" data-alt="Персональные">
-  <div class="page__head">
-    <h1 class="page__title">Персональные</h1>
-    <span class="page__num">03</span>
+<nav class="navmenu" id="navmenu" aria-label="Разделы сайта">
+  <div class="navmenu__list">
+    <a class="navmenu__row" href="lovestory.html"><span class="navmenu__num">01</span><span class="navmenu__label">Лавстори</span></a>
+    <a class="navmenu__row" href="family.html"><span class="navmenu__num">02</span><span class="navmenu__label">Семья</span></a>
+    <a class="navmenu__row" href="personal.html"><span class="navmenu__num">03</span><span class="navmenu__label">Персональные</span></a>
+    <a class="navmenu__row" href="prices.html"><span class="navmenu__num">04</span><span class="navmenu__label">Цены</span></a>
+    <a class="navmenu__row" href="about.html"><span class="navmenu__num">05</span><span class="navmenu__label">О себе</span></a>
+    <a class="navmenu__row" href="contacts.html"><span class="navmenu__num">06</span><span class="navmenu__label">Контакты</span></a>
+    <a class="navmenu__row" href="index.html"><span class="navmenu__num">00</span><span class="navmenu__label">Главная</span></a>
   </div>
+</nav>
+
+<main class="page" data-category="personal" data-alt="Персональные">
   <div class="gallery"></div>
 </main>
 
@@ -38,10 +44,11 @@
 </div>
 
 <footer class="foot">
-  <p class="meta">Съёмки в Санкт-Петербурге и с выездом</p>
+  <p class="meta">Съёмки в Москве и с выездом</p>
   <p class="meta"><a href="https://www.instagram.com/gesha__ph/" target="_blank" rel="noopener">Instagram — @gesha__ph</a></p>
 </footer>
 
-<script src="assets/js/gallery.js"></script>
+<script src="assets/js/nav.js?v=5"></script>
+<script src="assets/js/gallery.js?v=5"></script>
 </body>
 </html>

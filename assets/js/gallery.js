@@ -19,6 +19,7 @@
   function columnCount() {
     if (window.innerWidth <= 560) return 1;
     if (window.innerWidth <= 900) return 2;
+    if (window.innerWidth >= 1700) return 4;  // на широких мониторах иначе кадры выходят гигантскими
     return 3;
   }
 

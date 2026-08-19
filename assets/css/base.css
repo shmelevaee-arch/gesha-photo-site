@@ -1,12 +1,25 @@
 /* ---------- переменные и сброс ---------- */
 :root {
-  --bg: #0b0b0b;
-  --fg: #f2f0ed;
-  --muted: #8a8783;
-  --line: rgba(242, 240, 237, 0.14);
-  --accent: #f2f0ed;
-  --pad: clamp(20px, 4vw, 56px);
-  --tr: 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* палитра: галерейный белый + графитовый текст */
+  --bg: #fafafa;
+  --fg: #09090b;
+  --muted: #61616a;
+  --line: #e4e4e7;
+
+  /* шкала отступов, шаг 8 — все поля и промежутки берутся только отсюда */
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 32px;
+  --s5: 48px;
+  --s6: 64px;
+  --s8: 96px;
+
+  /* поле страницы и промежуток в сетке — одна величина, чтобы ритм читался */
+  --pad: clamp(20px, 2.6vw, 48px);
+  --gap: clamp(12px, 1.2vw, 24px);
+
+  --tr: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -19,7 +32,7 @@ body {
   color: var(--fg);
   font-family: "Inter", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -27,17 +40,21 @@ body {
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 
-/* мелкий служебный текст: имя, подписи, ссылки в подвале */
+/* узкий гротеск для имени и крупных заголовков — как в шаблоне-прототипе */
+.display {
+  font-family: "Barlow Condensed", "Inter", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
 .meta {
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.02em;
   color: var(--muted);
 }
 
 .meta a:hover { color: var(--fg); }
 
-/* только для скринридеров */
 .visually-hidden {
   position: absolute;
   width: 1px; height: 1px;

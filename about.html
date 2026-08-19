@@ -4,46 +4,72 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>О себе — Евгения Досаева, фотограф</title>
-<meta name="description" content="Фотограф Евгения Досаева: как проходит съёмка, подход к работе, что вы получаете в результате.">
+<meta name="description" content="Фотограф Евгения Досаева: как проходит съёмка, подход к работе, что вы получаете в результате. Москва.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/page.css">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css?v=5">
+<link rel="stylesheet" href="assets/css/page.css?v=5">
 </head>
 <body>
 <header class="topbar">
-  <a href="index.html"><h2 class="topbar__name">Евгения Досаева</h2></a>
-  <nav class="topbar__nav meta" aria-label="Основная навигация">
-    <a href="prices.html">Цены</a>
-    <a href="contacts.html">Контакты</a>
-    <a href="index.html">Все разделы</a>
-  </nav>
+  <h1 class="topbar__title"><a href="index.html">Евгения Досаева</a> <span>· О себе</span></h1>
+  <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="navmenu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
-<main class="page">
-  <div class="page__head">
-    <h1 class="page__title">О себе</h1>
-    <span class="page__num">05</span>
+<nav class="navmenu" id="navmenu" aria-label="Разделы сайта">
+  <div class="navmenu__list">
+    <a class="navmenu__row" href="lovestory.html"><span class="navmenu__num">01</span><span class="navmenu__label">Лавстори</span></a>
+    <a class="navmenu__row" href="family.html"><span class="navmenu__num">02</span><span class="navmenu__label">Семья</span></a>
+    <a class="navmenu__row" href="personal.html"><span class="navmenu__num">03</span><span class="navmenu__label">Персональные</span></a>
+    <a class="navmenu__row" href="prices.html"><span class="navmenu__num">04</span><span class="navmenu__label">Цены</span></a>
+    <a class="navmenu__row" href="about.html"><span class="navmenu__num">05</span><span class="navmenu__label">О себе</span></a>
+    <a class="navmenu__row" href="contacts.html"><span class="navmenu__num">06</span><span class="navmenu__label">Контакты</span></a>
+    <a class="navmenu__row" href="index.html"><span class="navmenu__num">00</span><span class="navmenu__label">Главная</span></a>
   </div>
+</nav>
 
+<main class="page">
   <div class="content split">
-    <div>
-      <p class="lead">Меня зовут Евгения, я снимаю людей в Санкт-Петербурге — портреты, пары и семьи.</p>
-      <p class="lead">Мне важно, чтобы на фотографиях человек был похож на себя, а не на удачную позу. Поэтому съёмка всегда начинается с разговора: обсуждаем, для чего вам эти кадры, где вам будет комфортно и какие образы стоит взять с собой. На самой съёмке я подсказываю, как встать и куда смотреть, — от вас не требуется опыта перед камерой.</p>
-      <p class="lead">Снимаю в студии, на улице, в кафе и дома — там, где вам спокойнее. После съёмки вы получаете 50+ кадров в цветокоррекции и 10 фотографий в детальной ретуши, готовность материала до 14 дней.</p>
-      <a class="cta" href="prices.html">Посмотреть цены</a>
+    <div class="split__media">
+      <img src="images/personal/03-grid.webp" alt="Портрет с индивидуальной съёмки" loading="eager" decoding="async">
     </div>
-    <figure style="margin:0">
-      <img src="images/personal/03-grid.webp" alt="Портрет из индивидуальной съёмки" loading="lazy" decoding="async">
-      <figcaption class="meta" style="margin-top:10px">Из индивидуальных съёмок</figcaption>
-    </figure>
+
+    <div>
+      <div class="page__head"><h2 class="page__title">О себе</h2></div>
+      <p class="lead">Меня зовут Евгения, я снимаю людей в Москве — портреты, пары и семьи.</p>
+      <p class="lead">Мне важно, чтобы на фотографиях человек был похож на себя, а не на удачную позу. Поэтому съёмка всегда начинается с разговора: обсуждаем, для чего вам эти кадры, где вам будет комфортно и какие образы стоит взять с собой. На самой съёмке я подсказываю, как встать и куда смотреть, — от вас не требуется опыта перед камерой.</p>
+
+      <section class="block">
+        <h3 class="block__title">Как проходит съёмка</h3>
+        <div class="row"><span class="row__name">Созвон или переписка</span><span class="row__value">до съёмки</span></div>
+        <div class="row"><span class="row__name">Сама съёмка</span><span class="row__value">1,5 часа</span></div>
+        <div class="row"><span class="row__name">Отбор и цветокоррекция</span><span class="row__value">50+ кадров</span></div>
+        <div class="row"><span class="row__name">Детальная ретушь</span><span class="row__value">10 кадров</span></div>
+        <div class="row"><span class="row__name">Готовность материала</span><span class="row__value">до 14 дней</span></div>
+      </section>
+
+      <section class="block">
+        <h3 class="block__title">Что снимаю</h3>
+        <ul class="plain">
+          <li>индивидуальные портретные съёмки</li>
+          <li>лавстори и парные съёмки</li>
+          <li>семейные и детские съёмки</li>
+        </ul>
+        <a class="cta" href="prices.html">Посмотреть цены</a>
+      </section>
+    </div>
   </div>
 </main>
 
 <footer class="foot">
-  <p class="meta">Съёмки в Санкт-Петербурге и с выездом</p>
+  <p class="meta">Съёмки в Москве и с выездом</p>
   <p class="meta"><a href="https://www.instagram.com/gesha__ph/" target="_blank" rel="noopener">Instagram — @gesha__ph</a></p>
 </footer>
+
+<script src="assets/js/nav.js?v=5"></script>
+
 </body>
 </html>
