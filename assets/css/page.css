@@ -175,6 +175,9 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 
 .gallery__item:hover img { transform: scale(1.03); filter: grayscale(0); }
 
+/* на сенсорных экранах цвет возвращает прокрутка — класс ставит gallery.js */
+.gallery__item.is-color img { filter: grayscale(0); }
+
 /* ---------- лайтбокс ---------- */
 .lightbox {
   position: fixed;

@@ -64,6 +64,8 @@
     });
 
     levelOut(nodes, heights);
+    if (centerObserver) centerObserver.disconnect();
+    watchCenter();
     renderedCols = cols;
   }
 
@@ -102,6 +104,24 @@
       if (items.length && columnCount() !== renderedCols) render();
     }, 150);
   });
+
+  // На телефоне наведения нет, поэтому цвет возвращает прокрутка:
+  // кадр окрашивается, когда доходит до середины экрана.
+  function watchCenter() {
+    if (window.matchMedia('(hover: hover)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        e.target.classList.toggle('is-color', e.isIntersecting);
+      });
+    }, { rootMargin: '-42% 0px -42% 0px', threshold: 0 });
+
+    grid.querySelectorAll('.gallery__item').forEach(function (el) { io.observe(el); });
+    centerObserver = io;
+  }
+
+  var centerObserver = null;
 
   // ---------- лайтбокс ----------
   var box = document.getElementById('lightbox');
