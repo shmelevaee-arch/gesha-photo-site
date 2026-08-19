@@ -5,7 +5,7 @@ import io, os
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
-V = "10"  # версия ассетов, чтобы браузер не держал старый CSS
+V = "12"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
 
@@ -96,22 +96,11 @@ PRICES = '''<main class="page">
 
     <div>
       <div class="page__head"><h2 class="page__title">Цены</h2></div>
-      <p class="lead">Съёмка начинается с разговора: обсуждаем задачу, место и образы, чтобы в кадре вы были собой, а не позировали на камеру.</p>
 
       <section class="block">
-        <h3 class="block__title">Съёмки</h3>
-        <div class="row">
-          <span class="row__name">Индивидуальная портретная<span class="row__note">студия, улица, кафе или другое место по договорённости</span></span>
-          <span class="row__value">10 000 ₽</span>
-        </div>
-        <div class="row">
-          <span class="row__name">Парная или семейная<span class="row__note">локация по договорённости</span></span>
-          <span class="row__value">12 000 ₽</span>
-        </div>
-      </section>
-
-      <section class="block">
-        <h3 class="block__title">Что входит</h3>
+        <h3 class="block__title">Индивидуальная портретная съёмка</h3>
+        <div class="row"><span class="row__name">Стоимость</span><span class="row__value">10 000 ₽</span></div>
+        <p class="block__sub">Что входит:</p>
         <ul class="plain">
           <li>консультация перед съёмкой</li>
           <li>помощь с подбором образа</li>
@@ -121,19 +110,38 @@ PRICES = '''<main class="page">
           <li>10 фотографий в детальной ретуши</li>
           <li>готовность материала до 14 дней</li>
         </ul>
+        <p class="block__sub">Локация:</p>
+        <p class="plain-text">студия, улица, кафе или другое место по договорённости.</p>
       </section>
 
       <section class="block">
-        <h3 class="block__title">Оплачивается отдельно</h3>
-        <div class="row"><span class="row__name">Аренда студии</span><span class="row__value">по тарифу студии</span></div>
-        <div class="row"><span class="row__name">Услуги визажиста</span><span class="row__value">по тарифу мастера</span></div>
-        <div class="row"><span class="row__name">Дополнительный час съёмки</span><span class="row__value">5 000 ₽</span></div>
+        <h3 class="block__title">Парная или семейная съёмка</h3>
+        <div class="row"><span class="row__name">Стоимость</span><span class="row__value">12 000 ₽</span></div>
+        <p class="block__sub">Что входит:</p>
+        <ul class="plain">
+          <li>консультация перед съёмкой</li>
+          <li>помощь с подбором образов</li>
+          <li>работа с позированием во время съёмки</li>
+          <li>1,5 часа съёмки</li>
+          <li>50+ фото в цветокоррекции</li>
+          <li>10 фото в детальной ретуши</li>
+          <li>готовность до 14 дней</li>
+        </ul>
+        <p class="plain-text">Локация по договорённости.</p>
       </section>
 
       <section class="block">
-        <h3 class="block__title">Как записаться</h3>
-        <p class="lead">Напишите в директ желаемую дату и задачу съёмки — отвечу и подберу время.</p>
-        <a class="cta" href="{insta}" target="_blank" rel="noopener">Написать в Instagram</a>
+        <h3 class="block__title">При необходимости, дополнительно оплачивается</h3>
+        <ul class="plain">
+          <li>аренда студии</li>
+          <li>услуги визажиста</li>
+          <li>дополнительный час съёмки: 5 000 ₽</li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <p class="plain-text">Для записи напишите в директ желаемую дату и задачу съёмки.</p>
+        <a class="cta" href="{insta}" target="_blank" rel="noopener">Написать в директ</a>
       </section>
     </div>
   </div>
@@ -144,74 +152,3 @@ content_page("prices", "Цены",
              "Стоимость съёмок: индивидуальная портретная — 10 000 ₽, парная или семейная — 12 000 ₽. Москва.",
              PRICES)
 
-ABOUT = '''<main class="page">
-  <div class="content split">
-    <div class="split__media">
-      <img src="images/personal/03-grid.webp" alt="Портрет с индивидуальной съёмки" loading="eager" decoding="async">
-    </div>
-
-    <div>
-      <div class="page__head"><h2 class="page__title">О себе</h2></div>
-      <p class="lead">Меня зовут Евгения, я снимаю людей в Москве — портреты, пары и семьи.</p>
-      <p class="lead">Мне важно, чтобы на фотографиях человек был похож на себя, а не на удачную позу. Поэтому съёмка всегда начинается с разговора: обсуждаем, для чего вам эти кадры, где вам будет комфортно и какие образы стоит взять с собой. На самой съёмке я подсказываю, как встать и куда смотреть, — от вас не требуется опыта перед камерой.</p>
-
-      <section class="block">
-        <h3 class="block__title">Как проходит съёмка</h3>
-        <div class="row"><span class="row__name">Созвон или переписка</span><span class="row__value">до съёмки</span></div>
-        <div class="row"><span class="row__name">Сама съёмка</span><span class="row__value">1,5 часа</span></div>
-        <div class="row"><span class="row__name">Отбор и цветокоррекция</span><span class="row__value">50+ кадров</span></div>
-        <div class="row"><span class="row__name">Детальная ретушь</span><span class="row__value">10 кадров</span></div>
-        <div class="row"><span class="row__name">Готовность материала</span><span class="row__value">до 14 дней</span></div>
-      </section>
-
-      <section class="block">
-        <h3 class="block__title">Что снимаю</h3>
-        <ul class="plain">
-          <li>индивидуальные портретные съёмки</li>
-          <li>лавстори и парные съёмки</li>
-          <li>семейные и детские съёмки</li>
-        </ul>
-        <a class="cta" href="prices.html">Посмотреть цены</a>
-      </section>
-    </div>
-  </div>
-</main>
-'''
-
-CONTACTS = '''<main class="page">
-  <div class="content split">
-    <div class="split__media">
-      <img src="images/lovestory/05-grid.webp" alt="Кадр с парной съёмки" loading="eager" decoding="async">
-    </div>
-
-    <div>
-      <div class="page__head"><h2 class="page__title">Контакты</h2></div>
-      <p class="lead">Чтобы записаться, напишите в директ желаемую дату и задачу съёмки — отвечу и подберу время.</p>
-
-      <section class="block">
-        <h3 class="block__title">Связаться</h3>
-        <div class="row"><span class="row__name">Instagram</span><span class="row__value"><a href="{insta}" target="_blank" rel="noopener">@gesha__ph</a></span></div>
-        <div class="row"><span class="row__name">Город</span><span class="row__value">Москва</span></div>
-        <div class="row"><span class="row__name">Выезд</span><span class="row__value">по договорённости</span></div>
-      </section>
-
-      <section class="block">
-        <h3 class="block__title">Съёмки</h3>
-        <ul class="plain">
-          <li>индивидуальные портретные</li>
-          <li>парные и лавстори</li>
-          <li>семейные и детские</li>
-        </ul>
-        <a class="cta" href="{insta}" target="_blank" rel="noopener">Написать в директ</a>
-      </section>
-    </div>
-  </div>
-</main>
-'''.format(insta=INSTA)
-
-content_page("about", "О себе",
-             "Фотограф Евгения Досаева: как проходит съёмка, подход к работе, что вы получаете в результате. Москва.",
-             ABOUT)
-content_page("contacts", "Контакты",
-             "Записаться на съёмку к фотографу Евгении Досаевой: напишите в Instagram-директ дату и задачу съёмки. Москва.",
-             CONTACTS)

@@ -28,9 +28,11 @@
 
 /* бургер */
 .burger {
-  width: 34px;
-  height: 24px;
-  padding: 0;
+  /* область нажатия 44x44 — минимум для пальца, сами линии 34px */
+  width: 44px;
+  height: 44px;
+  padding: 10px 5px;
+  margin-right: -5px;
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -220,6 +222,8 @@
 .row__value { font-size: clamp(15px, 1.1vw, 18px); white-space: nowrap; }
 .row__note { display: block; font-size: 12px; color: var(--muted); }
 
+.block__sub { margin: var(--s2) 0 var(--s1); font-size: 15px; }
+.plain-text { margin: 0; font-size: 15px; color: #333; }
 .plain { list-style: none; margin: 0; padding: 0; }
 .plain li { padding: 5px 0; font-size: 15px; color: #333; }
 
@@ -247,6 +251,12 @@
 }
 
 @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+
+@media (max-width: 700px) {
+  .topbar { height: 64px; }
+  .navmenu { padding: calc(64px + var(--s3)) var(--pad) var(--pad); }
+  .page { padding-bottom: var(--s6); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
