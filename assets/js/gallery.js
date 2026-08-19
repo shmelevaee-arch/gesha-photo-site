@@ -18,7 +18,7 @@
 
   function columnCount() {
     if (window.innerWidth <= 560) return 2;
-    if (window.innerWidth <= 900) return 3;
+    if (window.innerWidth < 1200) return 3;
     return 4;  // как в шаблоне-прототипе: четыре колонки на десктопе
   }
 

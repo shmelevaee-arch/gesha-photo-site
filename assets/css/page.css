@@ -26,6 +26,9 @@
 
 .topbar__title span { color: var(--muted); font-weight: 400; }
 
+/* при открытом меню шапка пустая — имя показывает само меню */
+body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
+
 /* бургер */
 .burger {
   /* область нажатия 44x44 — минимум для пальца, сами линии 34px */
@@ -54,39 +57,72 @@
 .burger.is-open span:nth-child(2) { opacity: 0; }
 .burger.is-open span:nth-child(3) { transform: translateY(-4.2px) rotate(-45deg); }
 
-/* выпадающее меню под бургером */
+/* меню на весь экран — повторяет композицию главной: имя слева, список по центру */
 .navmenu {
   position: fixed;
   inset: 0;
   z-index: 35;
   display: none;
-  padding: calc(96px + var(--s3)) var(--pad) var(--pad);
+  align-items: center;
+  justify-content: center;
+  padding: var(--pad);
   background: var(--bg);
 }
 
-.navmenu.is-open { display: block; }
+.navmenu.is-open { display: flex; }
+
+.navmenu__name {
+  position: absolute;
+  left: var(--pad);
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  font-family: "Roboto Condensed", "Inter", Helvetica, Arial, sans-serif;
+  font-size: clamp(20px, 2vw, 30px);
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.navmenu__foot {
+  position: absolute;
+  left: var(--pad);
+  bottom: var(--pad);
+  margin: 0;
+}
 
 .navmenu__list { display: flex; flex-direction: column; }
 
 .navmenu__row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 34px auto;
+  column-gap: clamp(40px, 7vw, 110px);
   align-items: baseline;
-  gap: 18px;
-  padding: clamp(8px, 1.4vh, 14px) 0;
+  padding: clamp(3px, 0.6vh, 8px) 0;
   transition: opacity var(--tr), transform var(--tr);
 }
 
-.navmenu__row:hover { transform: translateX(8px); }
-.navmenu__list:hover .navmenu__row:not(:hover) { opacity: 0.35; }
+.navmenu__row:hover .navmenu__label { transform: translateX(6px); }
+.navmenu__list:hover .navmenu__row:not(:hover) .navmenu__label { opacity: 0.35; }
 
-.navmenu__num { font-size: 12px; color: var(--muted); min-width: 30px; }
+.navmenu__num {
+  font-size: clamp(12px, 1vw, 15px);
+  color: var(--muted);
+  text-align: center;
+}
 
 .navmenu__label {
   font-family: "Roboto Condensed", "Inter", Helvetica, Arial, sans-serif;
-  font-size: clamp(30px, 5vw, 58px);
+  font-size: clamp(22px, 2.6vw, 34px);
   font-weight: 500;
-  line-height: 1.05;
+  line-height: 1.25;
   text-transform: uppercase;
+  transition: opacity var(--tr), transform var(--tr);
+}
+
+@media (max-width: 700px) {
+  .navmenu { justify-content: flex-start; }
+  .navmenu__name { position: static; transform: none; display: none; }
 }
 
 /* ---------- страница ---------- */
@@ -178,7 +214,7 @@
   display: grid;
   /* фото тянется, текстовая колонка ограничена — иначе на широком мониторе
      цена уезжает от названия на пол-экрана */
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 640px);
+  grid-template-columns: minmax(0, 1fr) minmax(320px, min(640px, 45%));
   max-width: 1680px;
   gap: var(--s6);
   align-items: start;
@@ -236,7 +272,10 @@
 }
 
 .price__label {
-  margin: 0 0 var(--s2);
+  /* линия под заголовком секции — «каталожный» вид как в прототипе */
+  margin: 0 0 var(--s1);
+  padding-bottom: var(--s1);
+  border-bottom: 1px solid var(--line);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -248,7 +287,8 @@
 
 .plain li {
   position: relative;
-  padding: 7px 0 7px 22px;
+  padding: 11px 0 11px 22px;
+  border-bottom: 1px solid var(--line);
   font-size: 17px;
   line-height: 1.6;
   color: #1c1c1e;
@@ -259,7 +299,7 @@
   content: "";
   position: absolute;
   left: 2px;
-  top: 18px;
+  top: 22px;
   width: 5px;
   height: 5px;
   border-radius: 50%;
@@ -306,7 +346,6 @@
 
 @media (max-width: 700px) {
   .topbar { height: 64px; }
-  .navmenu { padding: calc(64px + var(--s3)) var(--pad) var(--pad); }
   .page { padding-bottom: var(--s6); }
 }
 
