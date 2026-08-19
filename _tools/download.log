@@ -30,3 +30,26 @@ Traceback (most recent call last):
   File "C:\Users\shmel\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 644, in _safe_read
     raise IncompleteRead(data, amt-len(data))
 http.client.IncompleteRead: IncompleteRead(10489590 bytes read, 3233017 more expected)
+== /Ћавстори -> _raw/lovestory: 12 файлов
+  [1] AS 146.jpg Ч уже скачан
+  [2] AS 27.jpg Ч уже скачан
+  [3] AS 44.jpg Ч уже скачан
+  [4] LA 133.jpg Ч уже скачан
+  [5] LA 23.jpg Ч уже скачан
+  [6] LA 7.jpg Ч уже скачан
+  [7] PV 101.jpg Ч уже скачан
+  [8] PV 143.jpg Ч уже скачан
+  [9] na 221.jpg Ч уже скачан
+  [10] na 99.jpg Ч уже скачан
+  [11] p 57.jpg Ч уже скачан
+  [12] red12.jpg Ч уже скачан
+== /ѕерсональные -> _raw/personal: 12 файлов
+  [1] LM 187.jpg Ч уже скачан
+  [2] LM 209.jpg Ч уже скачан
+  [3] M 116.jpg Ч уже скачан
+  [4] MMM 11.jpg Ч уже скачан
+  [5] mk piter 22.jpg Ч уже скачан
+  [6] mk piter 6.jpg Ч 13.1 ћЅ
+  [7] p 34.jpg Ч 10.9 ћЅ
+  [8] p 37.jpg Ч 8.4 ћЅ
+  [9] p 43.jpg Ч 7.7 ћЅ
