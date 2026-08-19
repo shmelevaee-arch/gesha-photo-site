@@ -6,7 +6,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
 TG = "https://t.me/evgeshaa1707"
-V = "40"  # версия ассетов, чтобы браузер не держал старый CSS
+V = "41"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
 
@@ -38,7 +38,7 @@ HEAD = '''<!doctype html>
 
 FOOT = '''
 <footer class="foot">
-  <p class="meta">Съёмка в студии и на локации, Москва</p>
+  <p class="meta">Москва · студия и улица</p>
   <p class="meta"><a href="{insta}" target="_blank" rel="noopener">Instagram</a> &nbsp;·&nbsp; <a href="{tg}" target="_blank" rel="noopener">Telegram</a></p>
 </footer>
 
