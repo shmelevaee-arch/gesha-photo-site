@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  height: 80px;
+  height: 96px;
   padding: 0 var(--pad);
   background: var(--bg);
 }
@@ -58,7 +58,7 @@
   inset: 0;
   z-index: 35;
   display: none;
-  padding: calc(80px + var(--s3)) var(--pad) var(--pad);
+  padding: calc(96px + var(--s3)) var(--pad) var(--pad);
   background: var(--bg);
 }
 
@@ -88,7 +88,7 @@
 }
 
 /* ---------- страница ---------- */
-.page { padding: 0 var(--pad) var(--s8); }
+.page { padding: var(--s3) var(--pad) var(--s8); }
 
 .page__head { margin-bottom: var(--s4); }
 
@@ -174,7 +174,9 @@
 /* раскладка прототипа: крупное фото слева, текстовые блоки справа */
 .split {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  /* фото тянется, текстовая колонка ограничена — иначе на широком мониторе
+     цена уезжает от названия на пол-экрана */
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 720px);
   gap: var(--s6);
   align-items: start;
 }
