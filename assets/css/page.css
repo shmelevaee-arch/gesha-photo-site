@@ -219,7 +219,7 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
      цена уезжает от названия на пол-экрана */
   grid-template-columns: minmax(0, 1fr) minmax(320px, min(640px, 45%));
   max-width: 1680px;
-  gap: var(--s6);
+  gap: clamp(40px, 5vw, 128px);
   align-items: start;
 }
 
