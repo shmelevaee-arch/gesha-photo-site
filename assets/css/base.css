@@ -16,8 +16,9 @@
   --s8: 96px;
 
   /* поле страницы и промежуток в сетке — одна величина, чтобы ритм читался */
-  --pad: clamp(20px, 2.6vw, 48px);
-  --gap: clamp(12px, 1.2vw, 24px);
+  /* значения сняты с шаблона-прототипа: поле 25px, зазор в сетке 16px */
+  --pad: clamp(16px, 2vw, 25px);
+  --gap: clamp(8px, 1.2vw, 16px);
 
   --tr: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -42,7 +43,7 @@ img { display: block; max-width: 100%; }
 
 /* узкий гротеск для имени и крупных заголовков — как в шаблоне-прототипе */
 .display {
-  font-family: "Barlow Condensed", "Inter", Helvetica, Arial, sans-serif;
+  font-family: "Roboto Condensed", "Inter", Helvetica, Arial, sans-serif;
   font-weight: 500;
   letter-spacing: 0.01em;
 }

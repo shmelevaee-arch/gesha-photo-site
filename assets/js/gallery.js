@@ -17,10 +17,9 @@
     .catch(function (e) { console.error('Не удалось загрузить manifest.json', e); });
 
   function columnCount() {
-    if (window.innerWidth <= 560) return 1;
-    if (window.innerWidth <= 900) return 2;
-    if (window.innerWidth >= 1700) return 4;  // на широких мониторах иначе кадры выходят гигантскими
-    return 3;
+    if (window.innerWidth <= 560) return 2;
+    if (window.innerWidth <= 900) return 3;
+    return 4;  // как в шаблоне-прототипе: четыре колонки на десктопе
   }
 
   // Раскладываем кадры по колонкам: каждый следующий уходит в самую короткую колонку,
