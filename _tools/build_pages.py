@@ -5,7 +5,8 @@ import io, os
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
-V = "22"  # версия ассетов, чтобы браузер не держал старый CSS
+TG = "https://t.me/evgeshaa1707"
+V = "23"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
 
@@ -37,7 +38,7 @@ HEAD = '''<!doctype html>
 FOOT = '''
 <footer class="foot">
   <p class="meta">Съёмки в Москве</p>
-  <p class="meta"><a href="{insta}" target="_blank" rel="noopener">Instagram — @gesha__ph</a></p>
+  <p class="meta"><a href="{insta}" target="_blank" rel="noopener">Instagram — @gesha__ph</a> &nbsp;·&nbsp; <a href="{tg}" target="_blank" rel="noopener">Telegram — @evgeshaa1707</a></p>
 </footer>
 
 <script src="assets/js/nav.js?v={v}"></script>
@@ -52,7 +53,7 @@ def head(title, desc, section):
 
 
 def foot(extra=""):
-    return FOOT.format(insta=INSTA, v=V, extra=extra)
+    return FOOT.format(insta=INSTA, tg=TG, v=V, extra=extra)
 
 
 def gallery_page(slug, section, desc):
@@ -146,13 +147,14 @@ PRICES = '''<main class="page">
       </section>
 
       <section class="price">
-        <p class="plain-text">Для записи напишите в директ желаемую дату и задачу съёмки.</p>
-        <a class="cta" href="{insta}" target="_blank" rel="noopener">Написать в директ</a>
+        <h3 class="price__name">Записаться</h3>
+        <p class="plain-text">Напишите в Telegram желаемую дату и задачу съёмки — отвечу и подберу время.</p>
+        <a class="cta" href="{tg}" target="_blank" rel="noopener">Telegram — @evgeshaa1707</a>
       </section>
     </div>
   </div>
 </main>
-'''.format(insta=INSTA)
+'''.format(insta=INSTA, tg=TG)
 
 content_page("prices", "Цены",
              "Стоимость съёмок: индивидуальная портретная — 10 000 ₽, парная или семейная — 12 000 ₽. Москва.",
