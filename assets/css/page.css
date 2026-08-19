@@ -142,20 +142,25 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 /* ---------- галерея ---------- */
 /* ряды одинаковой высоты, каждый ряд заполнен по ширине — низ всегда ровный.
    Ширину и высоту каждой плитки проставляет gallery.js */
+/* колоночная кладка, как в прототипе: ширина колонок одинаковая,
+   высота кадров своя — ничего не обрезается. Колонки заполняет gallery.js */
 .gallery {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap);
+}
+
+.gallery__col {
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: var(--gap);
 }
 
-.gallery__row {
-  display: flex;
-  gap: var(--gap);
-}
-
 .gallery__item {
   display: block;
-  flex: 0 0 auto;
+  width: 100%;
   overflow: hidden;
   background: #f2f2f2;
   cursor: zoom-in;
@@ -163,8 +168,7 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 
 .gallery__item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   filter: grayscale(1);
   transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), filter 0.5s ease;
 }
