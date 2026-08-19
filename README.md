@@ -1,6 +1,6 @@
 # Сайт фотографа Евгении Досаевой
 
-Портфолио-сайт фотографа (Санкт-Петербург). Instagram: [@gesha__ph](https://www.instagram.com/gesha__ph/)
+Портфолио-сайт фотографа (Москва). Instagram: [@gesha__ph](https://www.instagram.com/gesha__ph/)
 
 ## Что это
 
@@ -32,8 +32,6 @@ lovestory.html      — галерея «Лавстори»
 family.html         — галерея «Семья»
 personal.html       — галерея «Персональные»
 prices.html         — цены
-about.html          — о себе
-contacts.html       — контакты
 assets/css/         — стили
 assets/js/          — скрипты (лайтбокс, меню)
 images/             — сжатые фото для веба (в репозитории)
@@ -48,4 +46,20 @@ _tools/             — скрипты подготовки фото
 
 ## Публикация
 
-GitHub Pages, ветка `main`, корень репозитория.
+Опубликован на GitHub Pages: **https://shmelevaee-arch.github.io/gesha-photo-site/**
+
+Репозиторий: `shmelevaee-arch/gesha-photo-site` (публичный — иначе Pages платный).
+Источник сборки: ветка `main`, корень репозитория. Любой `git push` в `main`
+автоматически обновляет сайт через минуту-две.
+
+## Подготовка фото (порядок важен)
+
+```
+python _tools/download.py   # скачать оригиналы с Яндекс.Диска в _raw/
+python _tools/optimize.py   # сжать в images/ и создать manifest.json
+python _tools/layout.py     # посчитать тон/крупность плана и выстроить композицию
+python _tools/build_pages.py # пересобрать html из общего каркаса
+```
+
+`layout.py` обязателен после `optimize.py`: тот пересоздаёт манифест и сбрасывает
+порядок кадров на алфавитный.
