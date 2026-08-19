@@ -6,7 +6,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
 TG = "https://t.me/evgeshaa1707"
-V = "24"  # версия ассетов, чтобы браузер не держал старый CSS
+V = "25"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
 
@@ -38,9 +38,11 @@ HEAD = '''<!doctype html>
 
 FOOT = '''
 <footer class="foot">
-  <p class="meta">Съёмки в Москве</p>
-  <p class="meta"><a href="{insta}" target="_blank" rel="noopener">Instagram — @gesha__ph</a> &nbsp;·&nbsp; <a href="{tg}" target="_blank" rel="noopener">Telegram — @evgeshaa1707</a></p>
+  <p class="meta">Съёмка в студии и на локации, Москва</p>
+  <p class="meta"><a href="{insta}" target="_blank" rel="noopener">Instagram</a> &nbsp;·&nbsp; <a href="{tg}" target="_blank" rel="noopener">Telegram</a></p>
 </footer>
+
+<p class="disclaimer">Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещённой на территории РФ.</p>
 
 <script src="assets/js/nav.js?v={v}"></script>
 {extra}
