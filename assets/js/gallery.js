@@ -16,62 +16,130 @@
     })
     .catch(function (e) { console.error('Не удалось загрузить manifest.json', e); });
 
-  function columnCount() {
-    if (window.innerWidth <= 560) return 2;
-    if (window.innerWidth < 1200) return 3;
-    return 4;  // как в шаблоне-прототипе: четыре колонки на десктопе
+  // Ряды одинаковой высоты: каждый ряд заполняет ширину целиком, поэтому низ сетки
+  // всегда ровный, а кадры сохраняют пропорции (ничего не обрезается).
+  function targetHeight() {
+    var w = window.innerWidth;
+    if (w <= 560) return 260;
+    if (w <= 900) return 320;
+    if (w < 1400) return 380;
+    return Math.min(560, Math.round(w * 0.26));
   }
 
-  // Раскладываем кадры по колонкам: каждый следующий уходит в самую короткую колонку,
-  // чтобы низ галереи получался ровным независимо от пропорций фото.
-  function render() {
-    var cols = columnCount();
-    grid.innerHTML = '';
-    var heights = [];
-    var nodes = [];
+  function gapPx() {
+    var g = getComputedStyle(grid).gap;
+    var n = parseFloat(g);
+    return isNaN(n) ? 16 : n;
+  }
 
-    for (var c = 0; c < cols; c++) {
-      var col = document.createElement('div');
-      col.className = 'gallery__col';
-      grid.appendChild(col);
-      nodes.push(col);
-      heights.push(0);
+  function maxPerRow() {
+    var w = window.innerWidth;
+    if (w <= 560) return 2;
+    if (w <= 900) return 3;
+    if (w < 1500) return 4;
+    return 5;
+  }
+
+  // Разбиение на ряды методом динамического программирования (как в justified-галереях):
+  // перебираем все допустимые разбиения с сохранением порядка кадров и выбираем то,
+  // где высоты рядов меньше всего отклоняются от целевой — тогда ритм ровный,
+  // а каждый ряд заполняет ширину целиком.
+  function splitRows(list, total, gap) {
+    var perRow = maxPerRow();
+    var n = list.length;
+    var ratios = list.map(function (it) { return it.w / it.h; });
+
+    // целевую высоту считаем от самих кадров: сколько рядов получится при желаемом
+    // масштабе, столько и делим — иначе ряды выходят разной высоты
+    var sumRatio = ratios.reduce(function (a, b) { return a + b; }, 0);
+    var base = targetHeight();
+    var rowsCount = Math.max(Math.ceil(n / perRow), Math.round(sumRatio * base / total), 1);
+    var target = total / (sumRatio / rowsCount);
+
+    var cost = new Array(n + 1).fill(Infinity);
+    var from = new Array(n + 1).fill(0);
+    cost[0] = 0;
+
+    for (var i = 0; i < n; i++) {
+      if (cost[i] === Infinity) continue;
+      var sum = 0;
+      for (var k = 0; k < perRow && i + k < n; k++) {
+        sum += ratios[i + k];
+        var count = k + 1;
+        var h = (total - gap * (count - 1)) / sum;
+        var end = i + count;
+        // штраф за отклонение высоты ряда от целевой; последний ряд судим мягче
+        var penalty = Math.pow(h - target, 2);
+        if (end === n) penalty *= 0.4;
+        if (h > target * 2 || h < target * 0.45) penalty *= 6;
+        if (cost[i] + penalty < cost[end]) {
+          cost[end] = cost[i] + penalty;
+          from[end] = i;
+        }
+      }
     }
 
-    items.forEach(function (item, i) {
-      // кадры идут по кругу — так ритм из манифеста (тон, крупность плана, форма)
-      // читается по горизонтали; в короткую колонку уходим, только если она заметно отстала
-      var target = i % cols;
-      var shortest = heights.indexOf(Math.min.apply(null, heights));
-      if (heights[target] - heights[shortest] > 0.9) target = shortest;
+    var bounds = [];
+    for (var pos = n; pos > 0; pos = from[pos]) bounds.unshift([from[pos], pos]);
 
-      var a = document.createElement('a');
-      a.className = 'gallery__item';
-      a.href = 'images/' + category + '/' + item.id + '-full.webp';
-      a.dataset.index = i;
-
-      var img = document.createElement('img');
-      img.src = 'images/' + category + '/' + item.id + '-grid.webp';
-      img.alt = (root.dataset.alt || 'Фото') + ' — кадр ' + (i + 1);
-      img.loading = i < cols * 2 ? 'eager' : 'lazy';
-      img.decoding = 'async';
-      img.width = item.w;
-      img.height = item.h;
-
-      a.appendChild(img);
-      nodes[target].appendChild(a);
-      heights[target] += item.h / item.w;
+    return bounds.map(function (b) {
+      var chunk = list.slice(b[0], b[1]);
+      return {
+        items: chunk,
+        ratio: chunk.reduce(function (acc, it) { return acc + it.w / it.h; }, 0)
+      };
     });
-
-    renderedCols = cols;
   }
 
-  var renderedCols = 0;
+  function render() {
+    grid.innerHTML = '';
+    var gap = gapPx();
+    var total = grid.clientWidth || grid.getBoundingClientRect().width;
+    var rows = splitRows(items, total, gap);
+    var index = 0;
+
+    // Высота ряда задаётся самими кадрами: ничего не обрезаем и не растягиваем.
+    rows.forEach(function (r) {
+      var free = total - gap * (r.items.length - 1);
+      var h = free / r.ratio;
+
+      var rowEl = document.createElement('div');
+      rowEl.className = 'gallery__row';
+      grid.appendChild(rowEl);
+
+      var used = 0;
+
+      r.items.forEach(function (item, k2) {
+        var a = document.createElement('a');
+        a.className = 'gallery__item';
+        a.href = 'images/' + category + '/' + item.id + '-full.webp';
+        a.dataset.index = index;
+        var wpx = (k2 === r.items.length - 1) ? Math.round(free - used) : Math.floor(h * (item.w / item.h));
+        used += wpx;
+        a.style.width = wpx + 'px';
+        a.style.height = Math.round(h) + 'px';
+
+        var img = document.createElement('img');
+        img.src = 'images/' + category + '/' + item.id + '-grid.webp';
+        img.alt = (root.dataset.alt || 'Фото') + ' — кадр ' + (index + 1);
+        img.loading = index < 8 ? 'eager' : 'lazy';
+        img.decoding = 'async';
+
+        a.appendChild(img);
+        rowEl.appendChild(a);
+        index++;
+      });
+    });
+
+    renderedWidth = window.innerWidth;
+  }
+
+  var renderedWidth = 0;
   var resizeTimer;
   window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
-      if (items.length && columnCount() !== renderedCols) render();
+      if (items.length && Math.abs(window.innerWidth - renderedWidth) > 40) render();
     }, 150);
   });
 
