@@ -113,9 +113,11 @@
 
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        e.target.classList.toggle('is-color', e.isIntersecting);
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-color');  // показался — остаётся цветным
+        io.unobserve(e.target);
       });
-    }, { rootMargin: '-42% 0px -42% 0px', threshold: 0 });
+    }, { rootMargin: '-25% 0px -25% 0px', threshold: 0 });
 
     grid.querySelectorAll('.gallery__item').forEach(function (el) { io.observe(el); });
     centerObserver = io;
