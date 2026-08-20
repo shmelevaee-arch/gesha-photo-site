@@ -85,7 +85,7 @@
 
   /* лента доводится свайпом: кадр всегда встаёт целиком, а не обрезанным краем экрана */
   .strip {
-    height: clamp(180px, 28svh, 300px);
+    height: clamp(230px, 34svh, 340px);
     scroll-snap-type: x mandatory;
     scroll-padding-left: var(--pad);
   }
