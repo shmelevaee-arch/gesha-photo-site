@@ -77,6 +77,17 @@
 
 @media (max-width: 700px) {
   .stack { height: calc(100svh - 64px); }
-  .strip { height: clamp(200px, 34svh, 360px); }
+
+  /* разделы — главный элемент экрана, поэтому крупнее */
+  .stack__row { grid-template-columns: 32px auto; column-gap: 22px; padding: 9px 0; }
+  .stack__label { font-size: clamp(34px, 9.5vw, 44px); }
+  .stack__num { font-size: 12px; }
+
+  /* лента доводится свайпом: кадр всегда встаёт целиком, а не обрезанным краем экрана */
+  .strip {
+    height: clamp(180px, 28svh, 300px);
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--pad);
+  }
   .stack__top { padding: var(--s4) var(--pad); }
 }
