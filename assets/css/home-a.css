@@ -1,0 +1,77 @@
+/* Вариант A — как в прототипе: кадр на весь экран, имя и список поверх по центру */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero__bg { position: absolute; inset: 0; }
+
+.hero__bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.8s ease, transform 2s ease, filter 0.8s ease;
+}
+
+.hero__bg img.is-active { opacity: 1; transform: scale(1); }
+
+/* светлая вуаль поверх кадра — чтобы чёрный текст читался на любом снимке */
+.hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(250, 250, 250, 0.62);
+}
+
+.hero__inner { position: relative; z-index: 1; text-align: center; }
+
+.hero__name {
+  margin: 0 0 clamp(20px, 3vh, 40px);
+  font-family: "Roboto Condensed", "Inter", Helvetica, Arial, sans-serif;
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.hero__menu { display: flex; flex-direction: column; align-items: center; gap: clamp(4px, 0.8vh, 10px); }
+
+.hero__row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 16px;
+  transition: opacity var(--tr);
+}
+
+.hero__num { font-size: 12px; color: var(--muted); }
+
+.hero__label {
+  font-family: "Roboto Condensed", "Inter", Helvetica, Arial, sans-serif;
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.hero__menu:hover .hero__row:not(:hover) { opacity: 0.4; }
+
+.hero__foot {
+  position: absolute;
+  z-index: 1;
+  left: var(--pad);
+  right: var(--pad);
+  bottom: var(--pad);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
