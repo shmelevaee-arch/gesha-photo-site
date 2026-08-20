@@ -120,6 +120,11 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
   transition: opacity var(--tr), transform var(--tr);
 }
 
+@media (max-width: 620px) {
+  /* на узком экране в шапке главной остаётся только имя — приписка не помещается */
+  .topbar__sub { display: none; }
+}
+
 @media (max-width: 700px) {
   /* меню повторяет главную: имя в левом верхнем углу, крупный список по центру */
   .navmenu { justify-content: flex-start; }
