@@ -38,29 +38,37 @@
   text-transform: uppercase;
 }
 
-/* лента кадров во всю ширину — фото работают сами по себе, без текста поверх */
+/* лента кадров: каждый снимок показан целиком, без обрезки —
+   поэтому ширина карточки зависит от пропорций кадра, а лента прокручивается вбок */
 .strip {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  display: flex;
+  align-items: stretch;
   gap: var(--gap);
   padding: 0 var(--pad) var(--pad);
   flex: 0 0 auto;
   height: clamp(170px, 30svh, 340px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+
+.strip::-webkit-scrollbar { display: none; }
 
 .strip a {
   display: block;
+  flex: 0 0 auto;
   height: 100%;
-  min-height: 0;
-  overflow: hidden;
+  width: auto;
+  scroll-snap-align: start;
   background: #f0f0f0;
 }
 
 .strip img {
-  width: 100%;
   height: 100%;
-  object-fit: cover;
+  width: 100%;
+  max-width: none;
   filter: grayscale(1);
   transition: filter 0.6s ease;
 }
@@ -69,7 +77,6 @@
 
 @media (max-width: 700px) {
   .stack { height: calc(100svh - 64px); }
-  .strip { grid-auto-columns: 62%; overflow-x: auto; height: clamp(200px, 34svh, 360px); scroll-snap-type: x mandatory; }
-  .strip a { scroll-snap-align: start; }
+  .strip { height: clamp(200px, 34svh, 360px); }
   .stack__top { padding: var(--s4) var(--pad); }
 }

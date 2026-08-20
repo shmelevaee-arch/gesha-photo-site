@@ -9,7 +9,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 TITLES = {"lovestory": ("Кадр из съёмки лавстори", "lovestory.html"),
           "family": ("Кадр из семейной съёмки", "family.html"),
           "personal": ("Кадр из индивидуальной съёмки", "personal.html")}
-COUNT = 5
+COUNT = 8
 
 
 def distance(a, b):
@@ -47,10 +47,15 @@ def main():
     lines = []
     for n, item in enumerate(order):
         alt, href = TITLES[item["cat"]]
-        loading = "eager" if n < 3 else "lazy"
-        lines.append('    <a href="{href}"><img src="images/{cat}/{id}-grid.webp" alt="{alt}" '
-                     'loading="{loading}" decoding="async"></a>'.format(
-                         href=href, cat=item["cat"], id=item["id"], alt=alt, loading=loading))
+        loading = "eager" if n < 4 else "lazy"
+        # пропорция задаётся контейнеру заранее — место под кадр зарезервировано,
+        # поэтому лента не прыгает, пока подгружаются снимки
+        lines.append(
+            '    <a href="{href}" style="aspect-ratio: {w} / {h}">'
+            '<img src="images/{cat}/{id}-grid.webp" alt="{alt}" width="{w}" height="{h}" '
+            'loading="{loading}" decoding="async"></a>'.format(
+                href=href, cat=item["cat"], id=item["id"], alt=alt,
+                loading=loading, w=item["w"], h=item["h"]))
 
     p = os.path.join(ROOT, "index.html")
     html = io.open(p, encoding="utf-8", newline="").read()
