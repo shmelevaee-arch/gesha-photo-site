@@ -6,7 +6,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
 TG = "https://t.me/evgeshaa1707"
-V = "60"  # версия ассетов, чтобы браузер не держал старый CSS
+AUTHOR_TG = "https://t.me/DOSAEVADESIGN"
+V = "62"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
 
@@ -40,6 +41,7 @@ FOOT = '''
 <footer class="foot">
   <p class="meta">Москва · студия и улица</p>
   <p class="meta"><a href="{insta}" target="_blank" rel="noopener">Instagram</a> &nbsp;·&nbsp; <a href="{tg}" target="_blank" rel="noopener">Telegram</a></p>
+  <p class="meta">Разработка сайта: <a href="{author}" target="_blank" rel="noopener">Досаева Елена</a></p>
 </footer>
 
 <p class="disclaimer">Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещённой на территории РФ.</p>
@@ -56,7 +58,7 @@ def head(title, desc, section):
 
 
 def foot(extra=""):
-    return FOOT.format(insta=INSTA, tg=TG, v=V, extra=extra)
+    return FOOT.format(insta=INSTA, tg=TG, author=AUTHOR_TG, v=V, extra=extra)
 
 
 def gallery_page(slug, section, desc):

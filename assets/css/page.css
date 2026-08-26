@@ -361,8 +361,10 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 .foot {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  align-items: baseline;
+  gap: 10px 32px;
   flex-wrap: wrap;
+  border-top: 1px solid var(--line);
   padding: var(--s5) var(--pad) var(--s4);
 }
 
