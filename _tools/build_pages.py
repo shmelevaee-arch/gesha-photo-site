@@ -7,7 +7,7 @@ NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
 TG = "https://t.me/evgeshaa1707"
 AUTHOR_TG = "https://t.me/DOSAEVADESIGN"
-V = "67"  # версия ассетов, чтобы браузер не держал старый CSS
+V = "68"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
 
@@ -57,7 +57,7 @@ FOOT = '''
     <p><a href="{insta}" target="_blank" rel="noopener">Instagram</a></p>
   </div>
 
-  <div class="foot__col">
+  <div class="foot__col foot__col--credit">
     <p class="foot__title">Разработка сайта</p>
     <p><a href="{author}" target="_blank" rel="noopener">Досаева Елена</a></p>
   </div>

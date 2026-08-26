@@ -376,6 +376,17 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 .foot__col a { color: var(--muted); }
 .foot__col a:hover { color: var(--fg); }
 
+/* строка авторства — служебная, поэтому приглушена целиком */
+.foot__col--credit p,
+.foot__col--credit .foot__title,
+.foot__col--credit a,
+.foot__col--credit a:visited {
+  color: #a8a8ae !important;
+  font-weight: 400;
+}
+
+.foot__col--credit a:hover { color: var(--muted) !important; }
+
 .foot__note {
   grid-column: 1 / -1;
   padding-top: var(--s2);
