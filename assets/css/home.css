@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   /* главная держится ровно в один экран: список сверху, лента снизу */
-  height: calc(100svh - 96px);
+  height: calc(100svh - 56px);
 }
 
 .stack__top {
@@ -18,24 +18,22 @@
 
 .stack__row {
   display: grid;
-  grid-template-columns: 40px auto;
-  column-gap: clamp(24px, 3vw, 56px);
+  grid-template-columns: 34px auto;
+  column-gap: 20px;
   align-items: baseline;
-  padding: clamp(4px, 0.8vh, 10px) 0;
+  padding: 5px 0;
   transition: opacity var(--tr), transform var(--tr);
 }
 
 .stack__row:hover { transform: translateX(10px); }
 .stack__menu:hover .stack__row:not(:hover) { opacity: 0.3; }
 
-.stack__num { font-size: clamp(12px, 1vw, 14px); color: var(--muted); }
+.stack__num { font-size: var(--fs); color: var(--muted); }
 
 .stack__label {
-  font-family: "Roboto Condensed", "Inter", Helvetica, Arial, sans-serif;
-  font-size: clamp(30px, 5vw, 68px);
-  font-weight: 500;
-  line-height: 1.08;
-  text-transform: uppercase;
+  font-size: var(--fs);
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 /* лента кадров: каждый снимок показан целиком, без обрезки —
@@ -46,7 +44,7 @@
   gap: var(--gap);
   padding: 0 var(--pad) var(--pad);
   flex: 0 0 auto;
-  height: clamp(170px, 30svh, 340px);
+  height: clamp(240px, 46svh, 560px);
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x proximity;
@@ -76,16 +74,12 @@
 .strip a:hover img { filter: grayscale(0); }
 
 @media (max-width: 700px) {
-  .stack { height: calc(100svh - 64px); }
-
-  /* разделы — главный элемент экрана, поэтому крупнее */
-  .stack__row { grid-template-columns: 32px auto; column-gap: 22px; padding: 9px 0; }
-  .stack__label { font-size: clamp(34px, 9.5vw, 44px); }
-  .stack__num { font-size: 12px; }
+  .stack { height: calc(100svh - 52px); }
+  .stack__row { grid-template-columns: 28px auto; column-gap: 16px; padding: 5px 0; }
 
   /* лента доводится свайпом: кадр всегда встаёт целиком, а не обрезанным краем экрана */
   .strip {
-    height: clamp(230px, 34svh, 340px);
+    height: clamp(260px, 44svh, 420px);
     scroll-snap-type: x mandatory;
     scroll-padding-left: var(--pad);
   }

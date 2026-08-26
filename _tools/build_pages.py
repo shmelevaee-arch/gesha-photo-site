@@ -6,7 +6,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
 TG = "https://t.me/evgeshaa1707"
-V = "52"  # версия ассетов, чтобы браузер не держал старый CSS
+V = "60"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
 
@@ -102,8 +102,10 @@ PRICES = '''<main class="page">
       <div class="page__head"><h2 class="page__title">Цены</h2></div>
 
       <section class="price">
-        <h3 class="price__name">Индивидуальная портретная съёмка</h3>
-        <p class="price__value">10 000 ₽</p>
+        <div class="price__head">
+          <h3 class="price__name">Индивидуальная портретная съёмка</h3>
+          <p class="price__value">10 000 ₽</p>
+        </div>
         <p class="price__label">Что входит</p>
         <ul class="plain">
           <li>консультация перед съёмкой</li>
@@ -121,8 +123,10 @@ PRICES = '''<main class="page">
       </section>
 
       <section class="price">
-        <h3 class="price__name">Парная или семейная съёмка</h3>
-        <p class="price__value">12 000 ₽</p>
+        <div class="price__head">
+          <h3 class="price__name">Парная или семейная съёмка</h3>
+          <p class="price__value">12 000 ₽</p>
+        </div>
         <p class="price__label">Что входит</p>
         <ul class="plain">
           <li>консультация перед съёмкой</li>
@@ -140,7 +144,7 @@ PRICES = '''<main class="page">
       </section>
 
       <section class="price">
-        <h3 class="price__name">Дополнительно</h3>
+        <div class="price__head"><h3 class="price__name">Дополнительно</h3></div>
         <p class="price__label">При необходимости оплачивается отдельно</p>
         <ul class="plain">
           <li>аренда студии</li>
@@ -150,7 +154,7 @@ PRICES = '''<main class="page">
       </section>
 
       <section class="price">
-        <h3 class="price__name">Записаться</h3>
+        <div class="price__head"><h3 class="price__name">Записаться</h3></div>
         <p class="plain-text">Напишите в Telegram желаемую дату и задачу съёмки — отвечу и подберу время.</p>
         <a class="cta" href="{tg}" target="_blank" rel="noopener">Telegram — @evgeshaa1707</a>
       </section>

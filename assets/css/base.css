@@ -20,6 +20,10 @@
   --pad: clamp(20px, 2vw, 50px);
   --gap: clamp(12px, 1.25vw, 32px);
 
+  /* единый кегль текста и служебный, более мелкий */
+  --fs: 15px;
+  --fs-s: 13px;
+
   --tr: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
@@ -32,8 +36,11 @@ body {
   background: var(--bg);
   color: var(--fg);
   font-family: "Inter", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.65;
+  /* швейцарская типографика: один мелкий кегль на весь сайт,
+     иерархия держится весом, положением и линиями, а не размером */
+  font-size: var(--fs);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -49,8 +56,8 @@ img { display: block; max-width: 100%; }
 }
 
 .meta {
-  font-size: 12px;
-  letter-spacing: 0.02em;
+  font-size: var(--fs);
+  letter-spacing: -0.01em;
   color: var(--muted);
 }
 
