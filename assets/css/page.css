@@ -237,8 +237,12 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 
 .split__media { position: sticky; top: calc(56px + var(--s3)); }
 
-/* портрет пришёл превью 640px — не растягиваем, иначе будет мыло */
-.split__media--portrait { max-width: 640px; }
+/* портрет пришёл превью 640px — не растягиваем, иначе будет мыло.
+   Колонка сжимается по ширине снимка, чтобы зазор до текста был таким же,
+   как на странице цен, а не провалом в полэкрана */
+.split--portrait { grid-template-columns: auto minmax(320px, 1fr); }
+.split--portrait > div:last-child { max-width: 640px; }
+.split__media--portrait { width: min(640px, 40vw); }
 
 .split__media img {
   width: 100%;
