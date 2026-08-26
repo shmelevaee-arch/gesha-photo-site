@@ -272,7 +272,9 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
   align-items: baseline;
   justify-content: space-between;
   gap: 24px;
+  padding-bottom: 9px;
   margin-bottom: var(--s3);
+  border-bottom: 1px solid var(--fg);
 }
 
 .price__name {
@@ -291,7 +293,9 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 }
 
 .price__label {
-  margin: 0 0 var(--s2);
+  margin: 0 0 var(--s1);
+  padding-bottom: var(--s1);
+  border-bottom: 1px solid var(--line);
   font-size: var(--fs);
   font-weight: 400;
   color: var(--muted);
@@ -301,7 +305,8 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 
 .plain li {
   position: relative;
-  padding: 4px 0 4px 18px;
+  padding: 8px 0 8px 18px;
+  border-bottom: 1px solid var(--line);
   font-size: var(--fs);
   line-height: 1.4;
   color: #1c1c1e;
@@ -312,7 +317,7 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
   content: "";
   position: absolute;
   left: 2px;
-  top: 12px;
+  top: 16px;
   width: 4px;
   height: 4px;
   border-radius: 50%;
