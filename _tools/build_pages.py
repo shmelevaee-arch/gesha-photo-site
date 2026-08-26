@@ -7,7 +7,7 @@ NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
 TG = "https://t.me/evgeshaa1707"
 AUTHOR_TG = "https://t.me/DOSAEVADESIGN"
-V = "66"  # версия ассетов, чтобы браузер не держал старый CSS
+V = "67"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
 
@@ -190,8 +190,8 @@ content_page("prices", "Цены",
 
 ABOUT = '''<main class="page">
   <div class="content split">
-    <div class="split__media">
-      <img src="images/personal/03-grid.webp" alt="Кадр с индивидуальной съёмки" loading="eager" decoding="async">
+    <div class="split__media split__media--portrait">
+      <img src="images/about/portrait.webp" alt="Евгения Досаева, фотограф" width="640" height="640" loading="eager" decoding="async">
     </div>
 
     <div>

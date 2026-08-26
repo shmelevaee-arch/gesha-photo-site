@@ -237,6 +237,9 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 
 .split__media { position: sticky; top: calc(56px + var(--s3)); }
 
+/* портрет пришёл превью 640px — не растягиваем, иначе будет мыло */
+.split__media--portrait { max-width: 640px; }
+
 .split__media img {
   width: 100%;
   height: auto;
