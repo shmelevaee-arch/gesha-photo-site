@@ -7,7 +7,7 @@ NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
 TG = "https://t.me/evgeshaa1707"
 AUTHOR_TG = "https://t.me/DOSAEVADESIGN"
-V = "65"  # версия ассетов, чтобы браузер не держал старый CSS
+V = "66"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
 
@@ -188,3 +188,49 @@ content_page("prices", "Цены",
              "Стоимость съёмок: индивидуальная портретная — 10 000 ₽, парная или семейная — 12 000 ₽. Москва.",
              PRICES)
 
+ABOUT = '''<main class="page">
+  <div class="content split">
+    <div class="split__media">
+      <img src="images/personal/03-grid.webp" alt="Кадр с индивидуальной съёмки" loading="eager" decoding="async">
+    </div>
+
+    <div>
+      <div class="page__head"><h2 class="page__title">Обо мне</h2></div>
+
+      <section class="price">
+        <div class="price__head"><h3 class="price__name">Евгения Досаева</h3><p class="price__value">Москва</p></div>
+        <p class="plain-text">Снимаю индивидуальные, парные и семейные съёмки.</p>
+      </section>
+
+      <section class="price">
+        <div class="price__head"><h3 class="price__name">Как проходит съёмка</h3></div>
+        <p class="price__label">По шагам</p>
+        <ul class="plain">
+          <li>консультация перед съёмкой</li>
+          <li>помощь с подбором образа</li>
+          <li>работа с позированием во время съёмки</li>
+          <li>1,5 часа съёмки</li>
+          <li>50+ фотографий в цветокоррекции</li>
+          <li>10 фотографий в детальной ретуши</li>
+          <li>готовность материала до 14 дней</li>
+        </ul>
+      </section>
+
+      <section class="price">
+        <div class="price__head"><h3 class="price__name">Где снимаю</h3></div>
+        <p class="plain-text">Студия, улица, кафе или другое место по договорённости.</p>
+      </section>
+
+      <section class="price">
+        <div class="price__head"><h3 class="price__name">Записаться</h3></div>
+        <p class="plain-text">Напишите в Telegram желаемую дату и задачу съёмки — отвечу и подберу время.</p>
+        <a class="cta" href="{tg}" target="_blank" rel="noopener">Telegram — @evgeshaa1707</a>
+      </section>
+    </div>
+  </div>
+</main>
+'''.format(tg=TG)
+
+content_page("about", "Обо мне",
+             "Фотограф Евгения Досаева: как проходит съёмка, что входит и где снимаем. Москва.",
+             ABOUT)

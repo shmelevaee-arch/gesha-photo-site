@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Лавстори — Евгения Досаева, фотограф</title>
-<meta name="description" content="Съёмки для пар: лавстори в студии, на улице и в городе. Фотограф Евгения Досаева, Москва.">
+<title>Обо мне — Евгения Досаева, фотограф</title>
+<meta name="description" content="Фотограф Евгения Досаева: как проходит съёмка, что входит и где снимаем. Москва.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
 </head>
 <body>
 <header class="topbar">
-  <h1 class="topbar__title"><a href="index.html">Евгения Досаева</a> <span>· Лавстори</span></h1>
+  <h1 class="topbar__title"><a href="index.html">Евгения Досаева</a> <span>· Обо мне</span></h1>
   <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="navmenu">
     <span></span><span></span><span></span>
   </button>
@@ -33,17 +33,47 @@
   <p class="navmenu__foot meta">Съёмки в Москве</p>
 </nav>
 
-<main class="page" data-category="lovestory" data-alt="Лавстори">
-  <div class="gallery"></div>
-</main>
+<main class="page">
+  <div class="content split">
+    <div class="split__media">
+      <img src="images/personal/03-grid.webp" alt="Кадр с индивидуальной съёмки" loading="eager" decoding="async">
+    </div>
 
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
-  <button class="lightbox__close" type="button" aria-label="Закрыть">✕</button>
-  <button class="lightbox__btn lightbox__prev" type="button" aria-label="Предыдущее фото">←</button>
-  <img src="" alt="">
-  <button class="lightbox__btn lightbox__next" type="button" aria-label="Следующее фото">→</button>
-  <span class="lightbox__counter meta"></span>
-</div>
+    <div>
+      <div class="page__head"><h2 class="page__title">Обо мне</h2></div>
+
+      <section class="price">
+        <div class="price__head"><h3 class="price__name">Евгения Досаева</h3><p class="price__value">Москва</p></div>
+        <p class="plain-text">Снимаю индивидуальные, парные и семейные съёмки.</p>
+      </section>
+
+      <section class="price">
+        <div class="price__head"><h3 class="price__name">Как проходит съёмка</h3></div>
+        <p class="price__label">По шагам</p>
+        <ul class="plain">
+          <li>консультация перед съёмкой</li>
+          <li>помощь с подбором образа</li>
+          <li>работа с позированием во время съёмки</li>
+          <li>1,5 часа съёмки</li>
+          <li>50+ фотографий в цветокоррекции</li>
+          <li>10 фотографий в детальной ретуши</li>
+          <li>готовность материала до 14 дней</li>
+        </ul>
+      </section>
+
+      <section class="price">
+        <div class="price__head"><h3 class="price__name">Где снимаю</h3></div>
+        <p class="plain-text">Студия, улица, кафе или другое место по договорённости.</p>
+      </section>
+
+      <section class="price">
+        <div class="price__head"><h3 class="price__name">Записаться</h3></div>
+        <p class="plain-text">Напишите в Telegram желаемую дату и задачу съёмки — отвечу и подберу время.</p>
+        <a class="cta" href="https://t.me/evgeshaa1707" target="_blank" rel="noopener">Telegram — @evgeshaa1707</a>
+      </section>
+    </div>
+  </div>
+</main>
 
 <footer class="foot">
   <div class="foot__col">
@@ -73,6 +103,6 @@
 </footer>
 
 <script src="assets/js/nav.js?v=66"></script>
-<script src="assets/js/gallery.js?v=66"></script>
+
 </body>
 </html>
