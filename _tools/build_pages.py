@@ -7,7 +7,7 @@ NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
 TG = "https://t.me/evgeshaa1707"
 AUTHOR_TG = "https://t.me/DOSAEVADESIGN"
-V = "62"  # версия ассетов, чтобы браузер не держал старый CSS
+V = "63"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
 
@@ -39,12 +39,31 @@ HEAD = '''<!doctype html>
 
 FOOT = '''
 <footer class="foot">
-  <p class="meta">Москва · студия и улица</p>
-  <p class="meta"><a href="{insta}" target="_blank" rel="noopener">Instagram</a> &nbsp;·&nbsp; <a href="{tg}" target="_blank" rel="noopener">Telegram</a></p>
-  <p class="meta">Разработка сайта: <a href="{author}" target="_blank" rel="noopener">Досаева Елена</a></p>
-</footer>
+  <div class="foot__col">
+    <p class="foot__title">Евгения Досаева</p>
+    <p>Фотограф, Москва</p>
+  </div>
 
-<p class="disclaimer">Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещённой на территории РФ.</p>
+  <div class="foot__col">
+    <p class="foot__title">Съёмки</p>
+    <p>Индивидуальные</p>
+    <p>Парные и лавстори</p>
+    <p>Семейные</p>
+  </div>
+
+  <div class="foot__col">
+    <p class="foot__title">Связаться</p>
+    <p><a href="{tg}" target="_blank" rel="noopener">Telegram</a></p>
+    <p><a href="{insta}" target="_blank" rel="noopener">Instagram</a></p>
+  </div>
+
+  <div class="foot__col">
+    <p class="foot__title">Разработка сайта</p>
+    <p><a href="{author}" target="_blank" rel="noopener">Досаева Елена</a></p>
+  </div>
+
+  <p class="foot__note">Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещённой на территории РФ.</p>
+</footer>
 
 <script src="assets/js/nav.js?v={v}"></script>
 {extra}

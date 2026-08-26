@@ -349,23 +349,43 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 
 .cta:hover { opacity: 0.78; }
 
-.disclaimer {
-  margin: 0;
-  padding: 0 var(--pad) var(--s4);
+
+
+/* ---------- подвал ----------
+   колоночная сетка: у каждой группы свой столбец, всё на одном кегле,
+   правовая сноска отдельной строкой снизу */
+.foot {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s4) var(--s5);
+  padding: var(--s5) var(--pad) var(--s4);
+  margin-top: var(--s6);
+  border-top: 1px solid var(--fg);
+}
+
+.foot p { margin: 0; }
+
+.foot__col p { color: var(--muted); }
+
+.foot__title {
+  margin-bottom: 6px !important;
+  color: var(--fg) !important;
+  font-weight: 600;
+}
+
+.foot__col a { color: var(--muted); }
+.foot__col a:hover { color: var(--fg); }
+
+.foot__note {
+  grid-column: 1 / -1;
+  padding-top: var(--s3);
+  border-top: 1px solid var(--line);
   font-size: var(--fs-s);
-  line-height: 1.4;
   color: #9a9aa0;
 }
 
-/* ---------- подвал ---------- */
-.foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 10px 32px;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--line);
-  padding: var(--s5) var(--pad) var(--s4);
+@media (max-width: 760px) {
+  .foot { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3) var(--s4); }
 }
 
 @media (max-width: 900px) {
