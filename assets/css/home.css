@@ -18,8 +18,8 @@
 
 .stack__row {
   display: grid;
-  grid-template-columns: 34px auto;
-  column-gap: 20px;
+  grid-template-columns: max-content auto;
+  column-gap: 24px;
   align-items: baseline;
   padding: 5px 0;
   transition: opacity var(--tr), transform var(--tr);
@@ -28,11 +28,14 @@
 .stack__row:hover { transform: translateX(10px); }
 .stack__menu:hover .stack__row:not(:hover) { opacity: 0.3; }
 
-.stack__num { font-size: var(--fs); color: var(--muted); }
+.stack__num { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: var(--fs); letter-spacing: 0; color: var(--muted); white-space: pre; }
 
 .stack__label {
+  /* разделы набраны как в рефе заказчика: моноширинный, строчные, точка в конце */
+  font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
   font-size: var(--fs);
-  font-weight: 600;
+  font-weight: 400;
+  letter-spacing: 0;
   line-height: 1.35;
 }
 
@@ -75,7 +78,7 @@
 
 @media (max-width: 700px) {
   .stack { height: calc(100svh - 52px); }
-  .stack__row { grid-template-columns: 28px auto; column-gap: 16px; padding: 5px 0; }
+  .stack__row { grid-template-columns: max-content auto; column-gap: 16px; padding: 5px 0; }
 
   /* лента доводится свайпом: кадр всегда встаёт целиком, а не обрезанным краем экрана */
   .strip {

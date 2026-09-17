@@ -92,8 +92,8 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 
 .navmenu__row {
   display: grid;
-  grid-template-columns: 34px auto;
-  column-gap: clamp(40px, 7vw, 110px);
+  grid-template-columns: max-content auto;
+  column-gap: 24px;
   align-items: baseline;
   padding: clamp(3px, 0.6vh, 8px) 0;
   transition: opacity var(--tr), transform var(--tr);
@@ -103,13 +103,18 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 .navmenu__list:hover .navmenu__row:not(:hover) .navmenu__label { opacity: 0.35; }
 
 .navmenu__num {
+  font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
   font-size: var(--fs);
+  letter-spacing: 0;
   color: var(--muted);
+  white-space: pre;
 }
 
 .navmenu__label {
+  font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
   font-size: var(--fs);
-  font-weight: 600;
+  font-weight: 400;
+  letter-spacing: 0;
   line-height: 1.35;
   transition: opacity var(--tr), transform var(--tr);
 }
@@ -132,7 +137,7 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
   }
 
   .navmenu__list { width: 100%; }
-  .navmenu__row { grid-template-columns: 26px auto; column-gap: 18px; padding: 6px 0; }
+  .navmenu__row { grid-template-columns: max-content auto; column-gap: 16px; padding: 6px 0; }
 }
 
 /* ---------- страница ---------- */
