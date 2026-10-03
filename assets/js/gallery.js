@@ -105,22 +105,28 @@
     }, 150);
   });
 
-  // На телефоне наведения нет, поэтому цвет возвращает прокрутка:
-  // кадр окрашивается, когда доходит до середины экрана.
+  // На телефоне наведения нет, поэтому цвет возвращает прокрутка: кадр окрашивается,
+  // когда проходит через середину экрана. До первого движения пальцем вся лента серая —
+  // иначе верхние кадры красятся сразу при открытии страницы.
   function watchCenter() {
     if (window.matchMedia('(hover: hover)').matches) return;
     if (!('IntersectionObserver' in window)) return;
 
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('is-color');  // показался — остаётся цветным
-        io.unobserve(e.target);
-      });
-    }, { rootMargin: '-25% 0px -25% 0px', threshold: 0 });
+    var start = function () {
+      if (centerObserver) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('is-color');  // показался — остаётся цветным
+          io.unobserve(e.target);
+        });
+      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
 
-    grid.querySelectorAll('.gallery__item').forEach(function (el) { io.observe(el); });
-    centerObserver = io;
+      grid.querySelectorAll('.gallery__item').forEach(function (el) { io.observe(el); });
+      centerObserver = io;
+    };
+
+    window.addEventListener('scroll', start, { once: true, passive: true });
   }
 
   var centerObserver = null;
