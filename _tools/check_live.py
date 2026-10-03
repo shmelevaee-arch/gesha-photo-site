@@ -2,8 +2,8 @@
 """Проверяет опубликованный сайт: страницы, внутренние ссылки, картинки, мета-теги."""
 import json, re, sys, urllib.error, urllib.request
 
-BASE = "https://shmelevaee-arch.github.io/gesha-photo-site/"
-PAGES = ["", "lovestory.html", "family.html", "personal.html", "prices.html"]
+BASE = sys.argv[1] if len(sys.argv) > 1 else "https://shmelevaee-arch.github.io/gesha-photo-site/"
+PAGES = ["", "lovestory.html", "family.html", "personal.html", "prices.html", "about.html"]
 
 
 def get(url, method="GET"):

@@ -405,8 +405,9 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 
 @media (max-width: 900px) {
   .split { grid-template-columns: 1fr; }
-  /* на телефоне фото прячем — цены должны быть сразу, без экрана прокрутки */
-  .split__media { display: none; }
+  /* на телефоне прячем только фото у цен — прайс должен быть сразу, без экрана прокрутки.
+     На «Обо мне» портрет остаётся: там он и есть содержание страницы */
+  .split--prices .split__media { display: none; }
 }
 
 @media (max-width: 700px) {
