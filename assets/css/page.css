@@ -421,7 +421,8 @@ body.menu-open .topbar__title { opacity: 0; pointer-events: none; }
 
 /* кадр раздела у курсора: скрипт home.js кладёт его в body и двигает с инерцией.
    Фото целиком — карточка принимает пропорцию кадра, обрезки нет */
-.hover-cover { position: fixed; left: 0; top: 0; z-index: 30; pointer-events: none; }
+/* выше полотна бургер-меню (35) и шапки (40), иначе кадр прячется под ними */
+.hover-cover { position: fixed; left: 0; top: 0; z-index: 45; pointer-events: none; }
 
 .hover-cover__card {
   position: relative;
