@@ -1,13 +1,11 @@
-// Главная: при наведении на раздел рядом с курсором появляется кадр из этого раздела.
+// При наведении на раздел рядом со списком появляется кадр из этого раздела.
+// Работает и на главной (.stack__menu), и в бургер-меню внутренних страниц (.navmenu__list).
 // Приём перенесён с сайта Чаплыгиной (блок «Почитать»): карточка плывёт за курсором
 // с инерцией и лёгким наклоном. Отличие — фото показано целиком, без обрезки:
 // у карточки меняется пропорция под каждый кадр, а сами кадры сменяются через проявление.
-(() => {
-  const menu = document.querySelector('.stack__menu');
-  if (!menu || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const rows = [...menu.querySelectorAll('.stack__row[data-cover]')];
+const initHoverCover = (menu) => {
+  if (!menu) return;
+  const rows = [...menu.querySelectorAll('[data-cover]')];
   if (!rows.length) return;
 
   const cover = document.createElement('div');
@@ -44,4 +42,10 @@
     kick();
   }));
   menu.addEventListener('pointerleave', () => { active = false; cover.classList.remove('is-on'); });
-})();
+};
+
+if (matchMedia('(hover: hover) and (pointer: fine)').matches &&
+    !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  initHoverCover(document.querySelector('.stack__menu'));   // главная
+  initHoverCover(document.querySelector('.navmenu__list')); // бургер-меню
+}

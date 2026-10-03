@@ -7,7 +7,7 @@ NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
 TG = "https://t.me/evgeshaa1707"
 AUTHOR_TG = "https://t.me/DOSAEVADESIGN"
-V = "75"
+V = "76"
 SITE = "https://geshaph.ru"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
@@ -81,6 +81,7 @@ FOOT = '''
 </footer>
 
 <script src="assets/js/nav.js?v={v}"></script>
+<script src="assets/js/hover-cover.js?v={v}"></script>
 {extra}
 </body>
 </html>
