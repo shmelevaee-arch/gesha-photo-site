@@ -33,15 +33,34 @@ const initHoverCover = (menu) => {
   const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
 
   menu.addEventListener('pointermove', (e) => { tx = anchorX(); ty = e.clientY; kick(); });
-  rows.forEach((row, i) => row.addEventListener('pointerenter', (e) => {
-    if (!active) { x = tx = anchorX(); y = ty = e.clientY; }
-    active = true;
-    card.style.aspectRatio = row.dataset.ratio;
+  // Пропорция рамки меняется только когда кадр невидим: иначе прежний снимок
+  // успевает растянуться под новую форму.
+  let swapTimer = 0;
+  const show = (i, ratio) => {
+    card.style.aspectRatio = ratio;
     imgs.forEach((img, j) => img.classList.toggle('is-active', j === i));
     cover.classList.add('is-on');
+  };
+
+  rows.forEach((row, i) => row.addEventListener('pointerenter', (e) => {
+    if (!active) { x = tx = anchorX(); y = ty = e.clientY; }
+    const first = !active;
+    active = true;
     kick();
+
+    clearTimeout(swapTimer);
+    if (first || card.style.aspectRatio === row.dataset.ratio) {
+      show(i, row.dataset.ratio);       // форма та же — меняем кадр сразу
+      return;
+    }
+    cover.classList.remove('is-on');    // гасим, меняем форму, показываем снова
+    swapTimer = setTimeout(() => show(i, row.dataset.ratio), 200);
   }));
-  menu.addEventListener('pointerleave', () => { active = false; cover.classList.remove('is-on'); });
+  menu.addEventListener('pointerleave', () => {
+    clearTimeout(swapTimer);
+    active = false;
+    cover.classList.remove('is-on');
+  });
 };
 
 if (matchMedia('(hover: hover) and (pointer: fine)').matches &&
