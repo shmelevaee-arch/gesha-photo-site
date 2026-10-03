@@ -7,7 +7,8 @@ NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
 TG = "https://t.me/evgeshaa1707"
 AUTHOR_TG = "https://t.me/DOSAEVADESIGN"
-V = "75"  # версия ассетов, чтобы браузер не держал старый CSS
+V = "75"
+SITE = "https://geshaph.ru"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
 
@@ -19,6 +20,20 @@ HEAD = '''<!doctype html>
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="{canonical}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Евгения Досаева — фотограф">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="{canonical}">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="{site}/images/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fafafa">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Roboto+Condensed:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -72,8 +87,9 @@ FOOT = '''
 '''
 
 
-def head(title, desc, section):
-    return HEAD.format(title=title, desc=desc, section=section, name=NAME, nav=NAV, v=V)
+def head(title, desc, section, canonical):
+    return HEAD.format(title=title, desc=desc, section=section, name=NAME,
+                       nav=NAV, v=V, canonical=canonical, site=SITE)
 
 
 def foot(extra=""):
@@ -93,7 +109,7 @@ def gallery_page(slug, section, desc):
   <span class="lightbox__counter meta"></span>
 </div>
 '''.format(slug=slug, section=section)
-    html = head("{} — {}, фотограф".format(section, NAME), desc, section) + body + foot(
+    html = head("{} — {}, фотограф".format(section, NAME), desc, section, SITE + "/" + slug + ".html") + body + foot(
         '<script src="assets/js/gallery.js?v={}"></script>'.format(V))
     io.open(os.path.join(ROOT, slug + ".html"), "w", encoding="utf-8", newline="\n").write(html)
     print("собрал", slug + ".html")
@@ -108,7 +124,7 @@ gallery_page("personal", "Персональные",
 
 
 def content_page(slug, section, desc, body):
-    html = head("{} — {}, фотограф".format(section, NAME), desc, section) + body + foot()
+    html = head("{} — {}, фотограф".format(section, NAME), desc, section, SITE + "/" + slug + ".html") + body + foot()
     io.open(os.path.join(ROOT, slug + ".html"), "w", encoding="utf-8", newline="\n").write(html)
     print("собрал", slug + ".html")
 
