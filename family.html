@@ -23,12 +23,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Roboto+Condensed:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/base.css?v=80">
-<link rel="stylesheet" href="assets/css/page.css?v=80">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://www.geshaph.ru/#business",
+"name":"Евгения Досаева — фотограф","image":"https://www.geshaph.ru/images/og-cover.jpg",
+"url":"https://www.geshaph.ru/","priceRange":"10000-12000 RUB",
+"address":{"@type":"PostalAddress","addressLocality":"Москва","addressCountry":"RU"},
+"areaServed":{"@type":"City","name":"Москва"},
+"sameAs":["https://www.instagram.com/gesha__ph/","https://t.me/evgeshaa1707"],
+"founder":{"@type":"Person","name":"Евгения Досаева","jobTitle":"Фотограф"},
+"makesOffer":[
+{"@type":"Offer","name":"Индивидуальная портретная съёмка","price":"10000","priceCurrency":"RUB"},
+{"@type":"Offer","name":"Парная или семейная съёмка","price":"12000","priceCurrency":"RUB"}]}
+</script>
+<link rel="stylesheet" href="assets/css/base.css?v=82">
+<link rel="stylesheet" href="assets/css/page.css?v=82">
 </head>
 <body>
 <header class="topbar">
-  <h1 class="topbar__title"><a href="index.html">Евгения Досаева</a> <span>· Семья</span></h1>
+  <p class="topbar__title"><a href="index.html">Евгения Досаева</a> <span>· Семья</span></p>
   <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="navmenu">
     <span></span><span></span><span></span>
   </button>
@@ -48,7 +60,22 @@
 </nav>
 
 <main class="page" data-category="family" data-alt="Семья">
-  <div class="gallery"></div>
+  <h1 class="visually-hidden">Семейная фотосъёмка в Москве</h1>
+  <div class="gallery">
+    <a class="gallery__item" href="images/family/03-full.webp" data-index="0"><img src="images/family/03-grid.webp" alt="Семья — кадр 1" width="2000" height="3000" loading="eager" decoding="async"></a>
+    <a class="gallery__item" href="images/family/13-full.webp" data-index="1"><img src="images/family/13-grid.webp" alt="Семья — кадр 2" width="2000" height="1347" loading="eager" decoding="async"></a>
+    <a class="gallery__item" href="images/family/12-full.webp" data-index="2"><img src="images/family/12-grid.webp" alt="Семья — кадр 3" width="2000" height="3001" loading="eager" decoding="async"></a>
+    <a class="gallery__item" href="images/family/06-full.webp" data-index="3"><img src="images/family/06-grid.webp" alt="Семья — кадр 4" width="2000" height="1333" loading="eager" decoding="async"></a>
+    <a class="gallery__item" href="images/family/10-full.webp" data-index="4"><img src="images/family/10-grid.webp" alt="Семья — кадр 5" width="2000" height="3000" loading="eager" decoding="async"></a>
+    <a class="gallery__item" href="images/family/09-full.webp" data-index="5"><img src="images/family/09-grid.webp" alt="Семья — кадр 6" width="2000" height="3000" loading="eager" decoding="async"></a>
+    <a class="gallery__item" href="images/family/01-full.webp" data-index="6"><img src="images/family/01-grid.webp" alt="Семья — кадр 7" width="2000" height="3000" loading="eager" decoding="async"></a>
+    <a class="gallery__item" href="images/family/02-full.webp" data-index="7"><img src="images/family/02-grid.webp" alt="Семья — кадр 8" width="2000" height="3000" loading="eager" decoding="async"></a>
+    <a class="gallery__item" href="images/family/05-full.webp" data-index="8"><img src="images/family/05-grid.webp" alt="Семья — кадр 9" width="2000" height="3000" loading="lazy" decoding="async"></a>
+    <a class="gallery__item" href="images/family/07-full.webp" data-index="9"><img src="images/family/07-grid.webp" alt="Семья — кадр 10" width="2000" height="3000" loading="lazy" decoding="async"></a>
+    <a class="gallery__item" href="images/family/11-full.webp" data-index="10"><img src="images/family/11-grid.webp" alt="Семья — кадр 11" width="2000" height="3000" loading="lazy" decoding="async"></a>
+    <a class="gallery__item" href="images/family/08-full.webp" data-index="11"><img src="images/family/08-grid.webp" alt="Семья — кадр 12" width="2000" height="3000" loading="lazy" decoding="async"></a>
+    <a class="gallery__item" href="images/family/04-full.webp" data-index="12"><img src="images/family/04-grid.webp" alt="Семья — кадр 13" width="2000" height="2999" loading="lazy" decoding="async"></a>
+  </div>
 </main>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
@@ -86,8 +113,8 @@
   <p class="foot__note">Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещённой на территории РФ.</p>
 </footer>
 
-<script src="assets/js/nav.js?v=80"></script>
-<script src="assets/js/hover-cover.js?v=80"></script>
-<script src="assets/js/gallery.js?v=80"></script>
+<script src="assets/js/nav.js?v=82"></script>
+<script src="assets/js/hover-cover.js?v=82"></script>
+<script src="assets/js/gallery.js?v=82"></script>
 </body>
 </html>

@@ -26,6 +26,7 @@
   // чтобы низ галереи получался ровным независимо от пропорций фото.
   function render() {
     var cols = columnCount();
+    items.forEach(function (it) { if (it.node) it.node.remove(); });
     grid.innerHTML = '';
     var heights = [];
     var nodes = [];
@@ -45,20 +46,25 @@
       var shortest = heights.indexOf(Math.min.apply(null, heights));
       if (heights[target] - heights[shortest] > 0.9) target = shortest;
 
-      var a = document.createElement('a');
-      a.className = 'gallery__item';
-      a.href = 'images/' + category + '/' + item.id + '-full.webp';
+      // кадр уже есть в разметке — переиспользуем его, иначе создаём (запасной путь)
+      var a = item.node;
+      if (!a) {
+        a = document.createElement('a');
+        a.className = 'gallery__item';
+        a.href = 'images/' + category + '/' + item.id + '-full.webp';
+      }
       a.dataset.index = i;
 
-      var img = document.createElement('img');
-      img.src = 'images/' + category + '/' + item.id + '-grid.webp';
-      img.alt = (root.dataset.alt || 'Фото') + ' — кадр ' + (i + 1);
-      img.loading = i < cols * 2 ? 'eager' : 'lazy';
-      img.decoding = 'async';
-      img.width = item.w;
-      img.height = item.h;
-
-      a.appendChild(img);
+      if (!a.firstElementChild) {
+        var img = document.createElement('img');
+        img.src = 'images/' + category + '/' + item.id + '-grid.webp';
+        img.alt = (root.dataset.alt || 'Фото') + ' — кадр ' + (i + 1);
+        img.loading = i < cols * 2 ? 'eager' : 'lazy';
+        img.decoding = 'async';
+        img.width = item.w;
+        img.height = item.h;
+        a.appendChild(img);
+      }
       nodes[target].appendChild(a);
       heights[target] += item.h / item.w;
     });

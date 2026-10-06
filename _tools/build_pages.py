@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """Собирает html-страницы из общего каркаса: шапка «имя · раздел» + бургер, светлая тема."""
-import io, os
+import io, json, os
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 NAME = "Евгения Досаева"
 INSTA = "https://www.instagram.com/gesha__ph/"
 TG = "https://t.me/evgeshaa1707"
 AUTHOR_TG = "https://t.me/DOSAEVADESIGN"
-V = "80"
+V = "82"
 SITE = "https://www.geshaph.ru"  # версия ассетов, чтобы браузер не держал старый CSS
 
 NAV = io.open(os.path.join(ROOT, "_tools", "nav_snippet.html"), encoding="utf-8").read().strip()
@@ -37,12 +37,24 @@ HEAD = '''<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Roboto+Condensed:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{{"@context":"https://schema.org","@type":"ProfessionalService","@id":"{site}/#business",
+"name":"Евгения Досаева — фотограф","image":"{site}/images/og-cover.jpg",
+"url":"{site}/","priceRange":"10000-12000 RUB",
+"address":{{"@type":"PostalAddress","addressLocality":"Москва","addressCountry":"RU"}},
+"areaServed":{{"@type":"City","name":"Москва"}},
+"sameAs":["https://www.instagram.com/gesha__ph/","https://t.me/evgeshaa1707"],
+"founder":{{"@type":"Person","name":"Евгения Досаева","jobTitle":"Фотограф"}},
+"makesOffer":[
+{{"@type":"Offer","name":"Индивидуальная портретная съёмка","price":"10000","priceCurrency":"RUB"}},
+{{"@type":"Offer","name":"Парная или семейная съёмка","price":"12000","priceCurrency":"RUB"}}]}}
+</script>
 <link rel="stylesheet" href="assets/css/base.css?v={v}">
 <link rel="stylesheet" href="assets/css/page.css?v={v}">
 </head>
 <body>
 <header class="topbar">
-  <h1 class="topbar__title"><a href="index.html">{name}</a> <span>· {section}</span></h1>
+  <p class="topbar__title"><a href="index.html">{name}</a> <span>· {section}</span></p>
   <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="navmenu">
     <span></span><span></span><span></span>
   </button>
@@ -97,9 +109,27 @@ def foot(extra=""):
     return FOOT.format(insta=INSTA, tg=TG, author=AUTHOR_TG, v=V, extra=extra)
 
 
-def gallery_page(slug, section, desc):
+def gallery_items_html(slug, alt):
+    """Фотографии кладём прямо в HTML, а не подставляем скриптом: так их видят
+    поисковые роботы и поиск по картинкам. JS потом только раскладывает их по колонкам."""
+    manifest = json.load(io.open(os.path.join(ROOT, "images", "manifest.json"), encoding="utf-8"))
+    out = []
+    for n, item in enumerate(manifest.get(slug, []), 1):
+        out.append(
+            '    <a class="gallery__item" href="images/{slug}/{id}-full.webp" data-index="{i}">'
+            '<img src="images/{slug}/{id}-grid.webp" alt="{alt} — кадр {n}" '
+            'width="{w}" height="{h}" loading="{loading}" decoding="async"></a>'.format(
+                slug=slug, id=item["id"], i=n - 1, alt=alt, n=n,
+                w=item["w"], h=item["h"], loading="eager" if n <= 8 else "lazy"))
+    return chr(10).join(out)
+
+
+def gallery_page(slug, section, desc, h1):
     body = '''<main class="page" data-category="{slug}" data-alt="{section}">
-  <div class="gallery"></div>
+  <h1 class="visually-hidden">{h1}</h1>
+  <div class="gallery">
+{items}
+  </div>
 </main>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
@@ -109,7 +139,7 @@ def gallery_page(slug, section, desc):
   <button class="lightbox__btn lightbox__next" type="button" aria-label="Следующее фото">→</button>
   <span class="lightbox__counter meta"></span>
 </div>
-'''.format(slug=slug, section=section)
+'''.format(slug=slug, section=section, items=gallery_items_html(slug, section), h1=h1)
     html = head("{} — {}, фотограф".format(section, NAME), desc, section, SITE + "/" + slug + ".html") + body + foot(
         '<script src="assets/js/gallery.js?v={}"></script>'.format(V))
     io.open(os.path.join(ROOT, slug + ".html"), "w", encoding="utf-8", newline="\n").write(html)
@@ -117,11 +147,14 @@ def gallery_page(slug, section, desc):
 
 
 gallery_page("lovestory", "Лавстори",
-             "Съёмки для пар: лавстори в студии, на улице и в городе. Фотограф Евгения Досаева, Москва.")
+             "Съёмки для пар: лавстори в студии, на улице и в городе. Фотограф Евгения Досаева, Москва.",
+             "Лавстори: съёмки для пар в Москве")
 gallery_page("family", "Семья",
-             "Семейные и детские съёмки на природе и в студии. Фотограф Евгения Досаева, Москва.")
+             "Семейные и детские съёмки на природе и в студии. Фотограф Евгения Досаева, Москва.",
+             "Семейная фотосъёмка в Москве")
 gallery_page("personal", "Персональные",
-             "Индивидуальные портретные съёмки в студии и на улице. Фотограф Евгения Досаева, Москва.")
+             "Индивидуальные портретные съёмки в студии и на улице. Фотограф Евгения Досаева, Москва.",
+             "Индивидуальная портретная съёмка в Москве")
 
 
 def content_page(slug, section, desc, body):
@@ -137,7 +170,7 @@ PRICES = '''<main class="page">
     </div>
 
     <div>
-      <div class="page__head"><h2 class="page__title">Цены</h2></div>
+      <div class="page__head"><h1 class="page__title">Цены</h1></div>
 
       <section class="price">
         <div class="price__head">
@@ -212,7 +245,7 @@ ABOUT = '''<main class="page">
     </div>
 
     <div>
-      <div class="page__head"><h2 class="page__title">Обо мне</h2></div>
+      <div class="page__head"><h1 class="page__title">Обо мне</h1></div>
 
       <section class="price">
         <div class="price__head"><h3 class="price__name">Евгения Досаева</h3><p class="price__value">Москва</p></div>
